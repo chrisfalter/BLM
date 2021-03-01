@@ -1,0 +1,27 @@
+PUT /tweets/_mapping
+{
+  "properties": {
+    "doc" : {
+      "properties" : {
+        "created_at": {
+          "type" : "date",
+          "format" : "EEE MMM dd HH:mm:ss Z yyyy"
+        },
+        "coordinates" : {
+          "properties" : {
+            "coordinates" : {
+              "type" : "geo_point"
+            }
+          }
+        },
+        "geo" : {
+          "properties" : {
+            "coordinates" : {
+              "type" : "geo_point"
+            }
+          }
+        }
+      }
+    }
+  }
+}
