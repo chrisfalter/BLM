@@ -4,6 +4,7 @@ import leidenalg as la
 
 from graph_mgr import UserRetweetGraph
 
+
 class DeferredRetweet():
 
     def __init__(self, user_id, retweeted_id, retweet_id, memes):
@@ -12,45 +13,55 @@ class DeferredRetweet():
         self.retweet_id = retweet_id
         self.memes = memes
 
+
 class DeferredReplyTo():
     def __init__(self, user_id, to_user_id, memes):
         self.user_id = user_id
         self.to_user_id = to_user_id
         self.memes = memes
 
-class TweetsManager():
+
+class UserActivity():
 
     def __init__(self):
-        self.tweets = dict()                          # tweet_id -> tweet_text
-        self.user_tweet_counter = Counter()           # user_id -> num tweets
-        self.user_retweet_counter = Counter()         #
-        self.user_retweeted_counter = Counter()       # user_id -> num times retweeted
-        self.user_reply_counter = Counter()           #
-        self.user_replied_to_counter = Counter()      #
+        self.tweet_counter = Counter()
+        self.retweet_counter = Counter()
+        self.retweeted_counter = Counter()
+        self.reply_counter = Counter()
+        self.replied_to_counter = Counter()
+        self.meme_counter = defaultdict(Counter)      # meme -> count
+
+
+class TweetsManager():
+
+
+    def __init__(self):
         self.urg = UserRetweetGraph()                 # to identify communities
+        self.tweets = dict()                          # tweet_id -> tweet_text
+        self.user_activity = defaultdict(UserActivity)   # user_id -> UserActivity
         self.retweet_meme_counter = defaultdict(Counter) # (retweeter_id, retweeted_id) -> meme counter
         self.retweets = defaultdict(list)             # (retweeter_id, retweeted_id) -> list of tweet_id
         self.reply_counter = Counter()                # (replying_user, replied_to_user) -> tweet_count
-        self.user_meme_counter = defaultdict(Counter) # user_id -> meme counter TODO: delete this?
         self.deferred_retweets = []
         self.deferred_reply_tos = []
+
 
     def process_tweet(self, tweet):
         doc = tweet["doc"]
         self.tweets[doc["id"]] = doc["text"]
  
         user_id = str(doc["user_id"])
-        self.user_tweet_counter[user_id] += 1
+        self.user_activity[user_id].tweet_counter += 1
 
         memes = [d["text"].lower() for d in doc["hashtags"]]
         memes = [m for m in memes if m not in ('blacklivesmatter', 'blm')]
         for meme in memes:
-            self.user_meme_counter[user_id][meme] += 1
+            self.user_activity[user_id].meme_counter[meme] += 1
 
         if doc["is_retweet"]:
             retweet_id = doc["source_status_id"]
             retweeted_user_id = str(doc["source_user_id"])
-            if retweeted_user_id not in self.user_tweet_counter:
+            if retweeted_user_id not in self.user_activity:
                 self.deferred_retweets.append(DeferredRetweet(user_id, retweeted_user_id, retweet_id, memes))
             else:
                 self._process_retweet(user_id, retweeted_user_id, retweet_id, memes)
@@ -58,31 +69,43 @@ class TweetsManager():
             reply_to_user = doc["in_reply_to_user_id"]
             if reply_to_user:
                 reply_to_user = str(reply_to_user)
-                if reply_to_user not in self.user_tweet_counter:
+                if reply_to_user not in self.user_activity:
                     self.deferred_reply_tos.append(DeferredReplyTo(user_id, reply_to_user, memes))
                 else:
                     self._process_reply(user_id, reply_to_user)
 
+
     def _process_retweet(self, user_id, retweeted_user_id,retweet_id, memes):
-        self.user_retweet_counter[user_id] += 1
-        self.user_retweeted_counter[retweeted_user_id] += 1
+        self.user_activity[user_id].retweet_counter += 1
+        self.user_activity[retweeted_user_id].retweeted_counter += 1
         self.urg.add_retweet(user_id, retweeted_user_id)
         for meme in memes:
             self.retweet_meme_counter[(user_id, retweeted_user_id)][meme] += 1
         self.retweets[(user_id, retweeted_user_id)].append(retweet_id)
 
+
     def _process_reply(self, user_id, reply_to_id):
         self.reply_counter[(user_id, reply_to_user)] += 1
-        self.user_replied_to_counter[reply_to_user] += 1
-        self.user_reply_counter[user_id] += 1
+        self.user_activity[user_id].reply_counter += 1
+        self.user_activity[reply_to_user].replied_to_counter += 1
 
 
-    # TODO
     def process_deferred_interactions(self):
         """Process deferred replies and retweets to the maximum extent"""
-        pass
+        for retweet in self.deferred_retweets:
+            if retweet.retweeted_id in self.user_tweet_counter:
+                self._process_retweet(
+                    retweet.user_id, 
+                    retweet.retweeted_user_id, 
+                    retweet.retweet_id,
+                    retweet.memes
+                    )
+        for reply in self.deferred_reply_tos:
+            if reply.to_user_id in self.user_tweet_counter:
+                self._process_reply(reply.user_id, reply.to_user_id)
 
-    def analyze_communities(self, resolution_parameter = 1.0, n_iterations = 4):
+
+    def analyze_communities(self, resolution_parameter = 1.0, n_iterations = 5):
         self.community_user_map = {}                       # community_id -> list of user_id
         self.user_community_map = {}                       # user_id -> community_id
         self.community_meme_counter = defaultdict(Counter)  # community_id -> meme counter
