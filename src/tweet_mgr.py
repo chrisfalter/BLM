@@ -31,7 +31,8 @@ class UserActivity():
         self.replied_to_counter = Counter()
         self.meme_counter = defaultdict(Counter)      # meme -> count
 
-
+# TODO: write unit tests to make sure *all* the counters work as expected
+# TODO: write unit test(s) to make sure communities are partitioned as expected
 class TweetsManager():
 
 
