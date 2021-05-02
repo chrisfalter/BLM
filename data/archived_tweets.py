@@ -59,10 +59,10 @@ def get_action(tweet):
 
 print("starting")
 
-api_key = 'FsVHLxN3iI4wVbtMWSI3ehjh9'
-api_secret = 'iNnp9KjFMDalWwWoAcH96DBx6F7jZzpHvuQHOuMSdAkMQndgpZ'
+api_key = 'API_KEY'
+api_secret = 'API_SECRET'
 
-auth_handler = tweepy.AppAuthHandler(api_key,api_secret)
+auth_handler = tweepy.AppAuthHandler(api_key, api_secret)
 api = tweepy.API(auth_handler, wait_on_rate_limit=True)
 
 es = ES('localhost')
