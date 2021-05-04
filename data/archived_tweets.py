@@ -78,7 +78,7 @@ if __name__ == '__main__':
                 if not id_:
                     break
                 tweet_ids.append(int(id_))
-            if tweet_ids[-1] <= 597189127243575296: #last successful ID before connection error
+            if tweet_ids[-1] <= 0: #last successful ID before connection error
                 continue
             statuses = api.statuses_lookup(tweet_ids, trim_user=True, tweet_mode = "compat")
 

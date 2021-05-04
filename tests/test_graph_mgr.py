@@ -20,6 +20,4 @@ def test_graph_isDirectedWeighted():
     stderr.write(str(urg.g.es))
     stderr.write('\n')
     stderr.write(str(urg.g.vs))
-    urg.g.degree(["A"], mode = "IN")
     urg.g.degree(["A"], mode = "in")
-    urg.g.degree(["A"], type='in')
