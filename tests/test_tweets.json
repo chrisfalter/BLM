@@ -1,0 +1,531 @@
+[
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 17:59:40 +0000 2014",
+	"id" : 541290893425524736,
+	"text" : "#ShutItDown because #BlackLivesMatter (via @OWSLibrary) http://t.co/ilejaRqIDa",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 378,
+	"favorite_count" : 170,
+	"lang" : "en",
+	"user_id" : 335972576,
+	"is_retweet" : false,
+	"hashtags" : [
+	  {
+		"text" : "ShutItDown",
+		"indices" : [
+		  0,
+		  11
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  20,
+		  37
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "OWSLibrary",
+		"name" : "The People's Library",
+		"id" : 388529342,
+		"id_str" : "388529342",
+		"indices" : [
+		  43,
+		  54
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNMvvCUAEqz6T.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:48:16 +0000 2014",
+	"id" : 541303123352887296,
+	"text" : "RT @OccupyWallStNYC: #ShutItDown because #BlackLivesMatter (via @OWSLibrary) http://t.co/ilejaRqIDa",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 378,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 2746297971,
+	"is_retweet" : true,
+	"source_status_id" : 541290893425524736,
+	"source_user_id" : 335972576,
+	"hashtags" : [
+	  {
+		"text" : "ShutItDown",
+		"indices" : [
+		  21,
+		  32
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  41,
+		  58
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "OccupyWallStNYC",
+		"name" : "#AbolishPolice & #OccupyCityHall",
+		"id" : 335972576,
+		"id_str" : "335972576",
+		"indices" : [
+		  3,
+		  19
+		]
+	  },
+	  {
+		"screen_name" : "OWSLibrary",
+		"name" : "The People's Library",
+		"id" : 388529342,
+		"id_str" : "388529342",
+		"indices" : [
+		  64,
+		  75
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNMvvCUAEqz6T.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:48:16 +0000 2014",
+	"id" : 541303123352887297,
+	"text" : "RT @OccupyWallStNYC: #ShutItDown because #BlackLivesMatter (via @OWSLibrary) http://t.co/ilejaRqIDa",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 378,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 2746297972,
+	"is_retweet" : true,
+	"source_status_id" : 541290893425524736,
+	"source_user_id" : 335972576,
+	"hashtags" : [
+	  {
+		"text" : "ShutItDown",
+		"indices" : [
+		  21,
+		  32
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  41,
+		  58
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "OccupyWallStNYC",
+		"name" : "#AbolishPolice & #OccupyCityHall",
+		"id" : 335972576,
+		"id_str" : "335972576",
+		"indices" : [
+		  3,
+		  19
+		]
+	  },
+	  {
+		"screen_name" : "OWSLibrary",
+		"name" : "The People's Library",
+		"id" : 388529342,
+		"id_str" : "388529342",
+		"indices" : [
+		  64,
+		  75
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNMvvCUAEqz6T.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:48:23 +0000 2014",
+	"id" : 541303155225821185,
+	"text" : "RT @mina_ysf: From Australia to US: supporting #BlackLivesMatter in spirit. I pray for justice to be served #EricGarner #MikeBrown http://t…",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 200,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 247052159,
+	"is_retweet" : true,
+	"source_status_id" : 541208741106819072,
+	"source_user_id" : 2378713202,
+	"hashtags" : [
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  47,
+		  64
+		]
+	  },
+	  {
+		"text" : "EricGarner",
+		"indices" : [
+		  108,
+		  119
+		]
+	  },
+	  {
+		"text" : "MikeBrown",
+		"indices" : [
+		  120,
+		  130
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "mina_ysf",
+		"name" : "Mina",
+		"id" : 2378713202,
+		"id_str" : "2378713202",
+		"indices" : [
+		  3,
+		  12
+		]
+	  }
+	]
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 12:33:13 +0000 2014",
+	"id" : 541208741106819072,
+	"text" : "From Australia to US: supporting #BlackLivesMatter in spirit. I pray for justice to be served #EricGarner #MikeBrown http://t.co/rqFUde9Uoi",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 200,
+	"favorite_count" : 143,
+	"lang" : "en",
+	"user_id" : 2378713202,
+	"is_retweet" : false,
+	"hashtags" : [
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  33,
+		  50
+		]
+	  },
+	  {
+		"text" : "EricGarner",
+		"indices" : [
+		  94,
+		  105
+		]
+	  },
+	  {
+		"text" : "MikeBrown",
+		"indices" : [
+		  106,
+		  116
+		]
+	  }
+	],
+	"user_mentions" : [ "a" ],
+	"media_url" : "http://pbs.twimg.com/media/B4LCeBsCQAECJmb.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:48:23 +0000 2014",
+	"id" : 541303155225821186,
+	"text" : "RT @mina_ysf: From Australia to US: supporting #BlackLivesMatter in spirit. I pray for justice to be served #EricGarner #MikeBrown http://t…",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 200,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 247052160,
+	"is_retweet" : true,
+	"source_status_id" : 541208741106819072,
+	"source_user_id" : 2378713202,
+	"hashtags" : [
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  47,
+		  64
+		]
+	  },
+	  {
+		"text" : "EricGarner",
+		"indices" : [
+		  108,
+		  119
+		]
+	  },
+	  {
+		"text" : "MikeBrown",
+		"indices" : [
+		  120,
+		  130
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "mina_ysf",
+		"name" : "Mina",
+		"id" : 2378713202,
+		"id_str" : "2378713202",
+		"indices" : [
+		  3,
+		  12
+		]
+	  }
+	]
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:12:32 +0000 2014",
+	"id" : 541294131297787904,
+	"text" : "L.A. We see you!“@tashasmather: @Dreamdefenders Los Angeles!! #Shuititdown #Coast2Coast #BlackLivesMatter http://t.co/yDa3Ocf3wH”",
+	"in_reply_to_status_id" : 541291178251911168,
+	"in_reply_to_user_id" : 335972576,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 1,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 247052159,
+	"is_retweet" : false,
+	"hashtags" : [
+	  {
+		"text" : "Shuititdown",
+		"indices" : [
+		  62,
+		  74
+		]
+	  },
+	  {
+		"text" : "Coast2Coast",
+		"indices" : [
+		  75,
+		  87
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  88,
+		  105
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "Dreamdefenders",
+		"name" : "Dream Defenders",
+		"id" : 534675241,
+		"id_str" : "534675241",
+		"indices" : [
+		  32,
+		  47
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNdFKCQAEb_9v.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:00:48 +0000 2014",
+	"id" : 541291178251911168,
+	"text" : "@Dreamdefenders Los Angeles!! #Shuititdown #Coast2Coast #BlackLivesMatter http://t.co/oRvNGiPhZm",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 22,
+	"favorite_count" : 6,
+	"lang" : "es",
+	"user_id" : 335972576,
+	"is_retweet" : false,
+	"hashtags" : [
+	  {
+		"text" : "Shuititdown",
+		"indices" : [
+		  30,
+		  42
+		]
+	  },
+	  {
+		"text" : "Coast2Coast",
+		"indices" : [
+		  43,
+		  55
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  56,
+		  73
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "Dreamdefenders",
+		"name" : "Dream Defenders",
+		"id" : 534675241,
+		"id_str" : "534675241",
+		"indices" : [
+		  0,
+		  15
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNdFKCQAEb_9v.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:12:32 +0000 2014",
+	"id" : 541294131297787905,
+	"text" : "L.A. We see you!“@tashasmather: @Dreamdefenders Los Angeles!! #Shuititdown #Coast2Coast #BlackLivesMatter http://t.co/yDa3Ocf3wH”",
+	"in_reply_to_status_id" : 541291178251911167,
+	"in_reply_to_user_id" : 335972575,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 1,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 247052159,
+	"is_retweet" : false,
+	"hashtags" : [
+	  {
+		"text" : "Shuititdown",
+		"indices" : [
+		  62,
+		  74
+		]
+	  },
+	  {
+		"text" : "Coast2Coast",
+		"indices" : [
+		  75,
+		  87
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  88,
+		  105
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "Dreamdefenders",
+		"name" : "Dream Defenders",
+		"id" : 534675241,
+		"id_str" : "534675241",
+		"indices" : [
+		  32,
+		  47
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNdFKCQAEb_9v.jpg"
+  }
+},
+{
+  "doc" : {
+	"created_at" : "Sat Dec 06 18:48:16 +0000 2014",
+	"id" : 541303123352887298,
+	"text" : "RT @OccupyWallStNYC: #ShutItDown because #BlackLivesMatter (via @OWSLibrary) http://t.co/ilejaRqIDa",
+	"in_reply_to_status_id" : null,
+	"in_reply_to_user_id" : null,
+	"geo" : null,
+	"coordinates" : null,
+	"place" : null,
+	"retweet_count" : 378,
+	"favorite_count" : 0,
+	"lang" : "en",
+	"user_id" : 2746297971,
+	"is_retweet" : true,
+	"source_status_id" : 541290893425524735,
+	"source_user_id" : 335972575,
+	"hashtags" : [
+	  {
+		"text" : "ShutItDown",
+		"indices" : [
+		  21,
+		  32
+		]
+	  },
+	  {
+		"text" : "BlackLivesMatter",
+		"indices" : [
+		  41,
+		  58
+		]
+	  }
+	],
+	"user_mentions" : [
+	  {
+		"screen_name" : "OccupyWallStNYC",
+		"name" : "#AbolishPolice & #OccupyCityHall",
+		"id" : 335972576,
+		"id_str" : "335972576",
+		"indices" : [
+		  3,
+		  19
+		]
+	  },
+	  {
+		"screen_name" : "OWSLibrary",
+		"name" : "The People's Library",
+		"id" : 388529342,
+		"id_str" : "388529342",
+		"indices" : [
+		  64,
+		  75
+		]
+	  }
+	],
+	"media_url" : "http://pbs.twimg.com/media/B4MNMvvCUAEqz6T.jpg"
+  }
+}
+]
