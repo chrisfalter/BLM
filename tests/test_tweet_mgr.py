@@ -70,5 +70,6 @@ def test_retweetGraph_nodes_haveCorrectDegrees(get_retweet_graph):
 
 def test_retweetGraph_inactiveUser_notInRetweetGraph(get_retweet_graph):
     g = get_retweet_graph.g
+    node_names = g.vs["name"]
     inactiveUser = "335972575" # was retweeted and replied to, but didn't tweet
-    assert inactiveUser not in g.vs
+    assert inactiveUser not in node_names
