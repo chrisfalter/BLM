@@ -24,6 +24,13 @@ def get_retweet_graph(get_tw_mgr):
     return get_tw_mgr.urg
 
 
+@pytest.fixture
+def get_communities(get_tw_mgr):
+    tw_mgr = get_tw_mgr
+    tw_mgr.analyze_communities()
+    return tw_mgr
+
+
 def test_userActivity_hasCorrectCounts(get_tw_mgr):
     userActivityMap = get_tw_mgr.user_activity
     assert 6 == len(userActivityMap) # 6 users have tweeted
@@ -73,3 +80,42 @@ def test_retweetGraph_inactiveUser_notInRetweetGraph(get_retweet_graph):
     node_names = g.vs["name"]
     inactiveUser = "335972575" # was retweeted and replied to, but didn't tweet
     assert inactiveUser not in node_names
+
+def test_userActivity_memeCounter_hasCorrectCounts(get_retweet_graph):
+    pass
+
+
+def test_retweetDict_hasCorrectCounts(get_retweet_graph):
+    pass
+
+
+def test_retweetMemeCounter_hasCorrectCounts(get_retweet_graph):
+    pass
+
+
+def test_communityUserMap_hasCorrectMemberLists(get_communities):
+    pass
+
+
+def test_userCommunityMap_assignsCorrectCommunities(get_communities):
+    pass
+
+
+def test_communityMemeCounter_hasCorrectCounts(get_communities):
+    pass
+
+
+def test_communityRetweetCounter_hasCorrectCounts(get_communities):
+    pass
+
+
+def test_interCommunityRetweetCounter_hasCorrectCounts(get_communities):
+    pass
+
+
+def test_interCommunityReplyCounter_hasCorrectCounts(get_communities):
+    pass
+
+
+def test_communityTweetCounter_hasCorrectCounts(get_communities):
+    pass

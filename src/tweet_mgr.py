@@ -31,7 +31,7 @@ class UserActivity():
         self.replied_to_count = 0
         self.meme_counter = Counter()      # meme -> count
 
-# TODO: write unit tests to make sure *all* the counters work as expected
+
 # TODO: write unit test(s) to make sure communities are partitioned as expected
 class TweetsManager():
 
@@ -111,7 +111,7 @@ class TweetsManager():
                 self.user_activity[reply.user_id].reply_count += 1
 
 
-    def analyze_communities(self, resolution_parameter = 1.0, n_iterations = 5):
+    def analyze_communities(self, n_iterations = 5):
         self.community_user_map = {}                       # community_id -> list of user_id
         self.user_community_map = {}                       # user_id -> community_id
         self.community_meme_counter = defaultdict(Counter)  # community_id -> meme counter
@@ -146,7 +146,7 @@ class TweetsManager():
                 comm = tweeter_community
                 for retweet_id in self.retweets[user_pair]:
                     self.community_retweet_counter[comm][retweet_id] += 1
-                pair_meme_counter = self.retweet_meme_counter[(tweeter_id, tweeted_id)]
+                pair_meme_counter = self.retweet_meme_counter[(tweeter_id, retweeted_id)]
                 for meme in pair_meme_counter:
                     self.community_meme_counter[comm][meme] += pair_meme_counter[meme]
             else:
@@ -159,7 +159,9 @@ class TweetsManager():
                 self.inter_comm_reply_counter[(replying_comm, reply_to_comm)] += self.reply_counter[user_pair]
         
         for cid in self.community_user_map:
-            num_tw = sum([self.user_tweet_counter[uid] for uid in self.community_user_map[cid]])
+            num_tw = sum(
+                self.user_activity[uid].tweet_count 
+                for uid in self.community_user_map[cid]
+                )
             self.comm_tweet_counter[cid] = num_tw
-
-                
+               
