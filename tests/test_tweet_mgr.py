@@ -1,4 +1,5 @@
 """Tests for TweetsManager class. See test_tweets.csv for summary of users/tweets/ralationships in test data"""
+from collections import defaultdict, Counter
 import json
 import pytest
 import sys
@@ -81,12 +82,25 @@ def test_retweetGraph_inactiveUser_notInRetweetGraph(get_retweet_graph):
     inactiveUser = "335972575" # was retweeted and replied to, but didn't tweet
     assert inactiveUser not in node_names
 
-def test_userActivity_memeCounter_hasCorrectCounts(get_retweet_graph):
-    pass
+def test_userActivity_memeCounter_hasCorrectCounts(get_tw_mgr):
+    expected = {}
+    expected["335972576"] = Counter(["shutitdown", "shuititdown", "coast2coast"])
+    expected["247052159"] = Counter(["shuititdown", "coast2coast"] * 2 + ["ericgarner", "mikebrown"])
+    expected["2746297971"] = Counter(["shutitdown"] * 2)
+    tm = get_tw_mgr
+    for user in expected:
+        expected_memes = expected[user]
+        actual_memes = tm.user_activity[user].meme_counter
+        assert actual_memes == expected_memes
 
 
-def test_retweetDict_hasCorrectCounts(get_retweet_graph):
-    pass
+def test_retweetDict_hasCorrectCounts(get_tw_mgr):
+    expected_retweets = {}
+    expected_retweets[("2746297971", "335972576")] = [541290893425524736]
+    expected_retweets[("2746297971", "335972575")] = []
+    actual_retweets = get_tw_mgr.retweets
+    for user_pair in expected_retweets:
+        actual_retweets[user_pair] == expected_retweets[user_pair]
 
 
 def test_retweetMemeCounter_hasCorrectCounts(get_retweet_graph):
