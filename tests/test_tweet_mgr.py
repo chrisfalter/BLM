@@ -103,33 +103,93 @@ def test_retweetDict_hasCorrectCounts(get_tw_mgr):
         actual_retweets[user_pair] == expected_retweets[user_pair]
 
 
-def test_retweetMemeCounter_hasCorrectCounts(get_retweet_graph):
-    pass
+def test_retweetMemeCounter_hasCorrectCounts(get_tw_mgr):
+    expected = {}
+    expected[("2746297971", "335972576")] = Counter(["shutitdown"])
+    expected[("2746297972", "335972576")] = Counter(["shutitdown"])
+    expected[("247052159", "2378713202")] = Counter(["ericgarner", "mikebrown"])
+    expected[("247052160", "2378713202")] = Counter(["ericgarner", "mikebrown"])
+    actual = get_tw_mgr.retweet_meme_counter
+    for user_pair in expected:
+        assert actual[user_pair] == expected[user_pair]
+    assert len(actual) == len(expected)
 
 
 def test_communityUserMap_hasCorrectMemberLists(get_communities):
-    pass
+    community_user_map = get_communities.community_user_map
+    assert 2 == len(community_user_map)
+    for community_id in community_user_map:
+        user_list = community_user_map[community_id]
+        if "335972576" in user_list:
+            assert "2746297971" in user_list
+            assert "2746297972" in user_list
+            assert 3 == len(user_list)
+        elif "2378713202" in user_list:
+            assert "247052159" in user_list
+            assert "247052160" in user_list
+            assert 3 == len(user_list)
 
 
 def test_userCommunityMap_assignsCorrectCommunities(get_communities):
-    pass
+    community_user_map = get_communities.community_user_map
+
+    # build the expected user->community map from the community->user map
+    expected = {}
+    for community_id in community_user_map:
+        user_list = community_user_map[community_id]
+        for user in user_list:
+            expected[user] = community_id
+
+    # verify the user->community map
+    actual = get_communities.user_community_map
+    assert actual == expected
+
+
+def _get_community_ids(tw_mgr):
+    user_comm_map = tw_mgr.user_community_map
+    blue_community_id = user_comm_map["2378713202"]
+    orange_community_id = user_comm_map["335972576"]
+    return blue_community_id, orange_community_id
 
 
 def test_communityMemeCounter_hasCorrectCounts(get_communities):
-    pass
+    blue_community_id, orange_community_id = _get_community_ids(get_communities)
+    expected_orange_memes = Counter(["shutitdown"] * 2)
+    expected_blue_memes = Counter(["ericgarner", "mikebrown"] * 2)
+    actual = get_communities.community_meme_counter
+    assert actual[orange_community_id] == expected_orange_memes
+    assert actual[blue_community_id] == expected_blue_memes
 
 
 def test_communityRetweetCounter_hasCorrectCounts(get_communities):
-    pass
+    blue_community_id, orange_community_id = _get_community_ids(get_communities)
+    expected_blue_retweet_ids = Counter([541208741106819072] * 2)
+    expected_orange_retweet_ids = Counter([541290893425524736] * 2)
+    actual = get_communities.community_retweet_counter
+    assert actual[blue_community_id] == expected_blue_retweet_ids
+    assert actual[orange_community_id] == expected_orange_retweet_ids
 
 
 def test_interCommunityRetweetCounter_hasCorrectCounts(get_communities):
+    # there are no inter-community retweets due to the test design
     pass
 
 
 def test_interCommunityReplyCounter_hasCorrectCounts(get_communities):
-    pass
+    # mock data contains one reply from blue to orange
+    blue_community_id, orange_community_id = _get_community_ids(get_communities)
+    actual = get_communities.inter_comm_reply_counter
+    reply_counter = get_communities.reply_counter
+    assert reply_counter[("247052159", "335972576")] == 1
+    expected_count = 1
+    assert actual[(blue_community_id, orange_community_id)] == expected_count
+    expected_count = 0
+    assert actual[(orange_community_id, blue_community_id)] == expected_count
 
 
 def test_communityTweetCounter_hasCorrectCounts(get_communities):
-    pass
+    expected_count = 5 # both communities have 5 tweets in test data
+    tweet_counter = get_communities.comm_tweet_counter
+    for community_id in _get_community_ids(get_communities):
+        actual_count = tweet_counter[community_id] 
+        assert actual_count == expected_count
