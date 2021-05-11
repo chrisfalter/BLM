@@ -142,6 +142,8 @@ class TweetsManager():
             retweeted_id = user_pair[1]
             tweeter_community = self.user_community_map[tweeter_id]
             tweeted_community = self.user_community_map[retweeted_id]
+            if tweeter_community is None or tweeted_community is None:
+                continue
             if tweeter_community == tweeted_community:
                 comm = tweeter_community
                 for retweet_id in self.retweets[user_pair]:
@@ -151,11 +153,14 @@ class TweetsManager():
                     self.community_meme_counter[comm][meme] += pair_meme_counter[meme]
             else:
                 self.inter_comm_retweet_counter[(tweeter_community, tweeted_community)] += 1
+        
         for user_pair in self.reply_counter:
-            # the reply might be to a tweet that didn't include BLM, so the user might not be in the dataset
             replying_comm = self.user_community_map.get(user_pair[0])
             reply_to_comm = self.user_community_map.get(user_pair[1])
-            if replying_comm and reply_to_comm and replying_comm != reply_to_comm:
+            # the reply might be to a tweet that didn't include BLM, so the user might not be in the dataset
+            if replying_comm is None or reply_to_comm is None:
+                continue
+            if replying_comm != reply_to_comm:
                 self.inter_comm_reply_counter[(replying_comm, reply_to_comm)] += self.reply_counter[user_pair]
         
         for cid in self.community_user_map:
