@@ -1,6 +1,8 @@
+from typing import Dict
+
 import sqlite3 as sql
 
-from tweet_mgr import UserActivity
+from src.tweet_mgr import TweetsManager, UserActivity
 
 _account_table = \
 """CREATE TABLE IF NOT EXISTS Account (
@@ -63,12 +65,55 @@ class BlmActivityDb():
 
 
     def _initialize_db(self):
-        pass
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(_account_table)
+            cur.execute(_community_table)
+            cur.execute(_account_activity_table)
+            cur.execute(_retweet_table)
+            cur.execute(_reply_table)
 
 
-    def save_tweets_mgr(self, tw_mgr, period_no):
-        pass
+    def save_tweets_mgr(self, tw_mgr: TweetsManager, period_no: int):
+        self._save_accounts(tw_mgr.user_activity)
+        self._save_communities(tw_mgr.community_user_map, period_no)
+        self._save_user_activity(tw_mgr.user_activity, tw_mgr.user_community_map, period_no)
 
+
+    def _save_accounts(self, user_activity_map):
+        account_insert = "INSERT or IGNORE into Account(AccountId) values (?)"
+        with self.conn:
+            cur = self.conn.cursor()
+            for user_id in user_activity_map:
+                cur.execute(account_insert, (user_id,))
+
+
+    def _save_communities(self, community_user_map, period_no):
+        community_insert = "INSERT into Community(PeriodId, CommunityId) values (?, ?)"
+        with self.conn:
+            cur = self.conn.cursor()
+            for community_id in community_user_map:
+                cur.execute(community_insert, (period_no, community_id))
+
+
+    def _save_user_activity(self, user_activity_map: Dict[str, UserActivity], user_community_map, period_no):
+        account_activity_insert = "INSERT into AccountActivity Values(?, ?, ?, ?, ?, ?, ?, ?)"
+        with self.conn:
+            cur = self.conn.cursor()
+            for user_id, user_activity in user_activity_map.items():
+                comm_id = user_community_map[user_id]
+                vals = (
+                    user_id,
+                    period_no,
+                    comm_id,
+                    user_activity.tweet_count,
+                    user_activity.retweet_count,
+                    user_activity.retweeted_count,
+                    user_activity.reply_count,
+                    user_activity.replied_to_count
+                )
+                cur.execute(account_activity_insert, vals)
+        
 
     def communities_summary_by_period(self, period_no):
         pass

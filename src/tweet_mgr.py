@@ -2,7 +2,7 @@ from collections import Counter, defaultdict
 
 import leidenalg as la
 
-from graph_mgr import UserRetweetGraph
+from src.graph_mgr import UserRetweetGraph
 
 
 class DeferredRetweet():
@@ -32,7 +32,6 @@ class UserActivity():
         self.meme_counter = Counter()      # meme -> count
 
 
-# TODO: write unit test(s) to make sure communities are partitioned as expected
 class TweetsManager():
 
 

@@ -5,7 +5,7 @@ import pytest
 import sys
 sys.path.append("src")
 
-from tweet_mgr import TweetsManager
+from src.tweet_mgr import TweetsManager
 
 
 @pytest.fixture
