@@ -156,18 +156,18 @@ def test_communityMemeCounter_hasCorrectCounts(get_communities):
     blue_community_id, orange_community_id = _get_community_ids(get_communities)
     expected_orange_memes = Counter(["shutitdown"] * 2)
     expected_blue_memes = Counter(["ericgarner", "mikebrown"] * 2)
-    actual = get_communities.community_meme_counter
-    assert actual[orange_community_id] == expected_orange_memes
-    assert actual[blue_community_id] == expected_blue_memes
+    actual_map = get_communities.community_activity_map
+    assert actual_map[orange_community_id].meme_counter == expected_orange_memes
+    assert actual_map[blue_community_id].meme_counter == expected_blue_memes
 
 
 def test_communityRetweetCounter_hasCorrectCounts(get_communities):
     blue_community_id, orange_community_id = _get_community_ids(get_communities)
-    expected_blue_retweet_ids = Counter([541208741106819072] * 2)
-    expected_orange_retweet_ids = Counter([541290893425524736] * 2)
-    actual = get_communities.community_retweet_counter
-    assert actual[blue_community_id] == expected_blue_retweet_ids
-    assert actual[orange_community_id] == expected_orange_retweet_ids
+    expected_blue_retweet_counter = Counter([541208741106819072] * 2)
+    expected_orange_retweet_counter = Counter([541290893425524736] * 2)
+    actual_map = get_communities.community_activity_map
+    assert actual_map[blue_community_id].retweet_counter == expected_blue_retweet_counter
+    assert actual_map[orange_community_id].retweet_counter == expected_orange_retweet_counter
 
 
 def test_interCommunityRetweetCounter_hasCorrectCounts(get_communities):
@@ -188,8 +188,8 @@ def test_interCommunityReplyCounter_hasCorrectCounts(get_communities):
 
 
 def test_communityTweetCounter_hasCorrectCounts(get_communities):
-    expected_count = 5 # both communities have 5 tweets in test data
-    tweet_counter = get_communities.comm_tweet_counter
+    expected_num = 5 # both communities have 5 tweets in test data
+    activity_map = get_communities.community_activity_map
     for community_id in _get_community_ids(get_communities):
-        actual_count = tweet_counter[community_id] 
-        assert actual_count == expected_count
+        actual_num = activity_map[community_id].num_tweets
+        assert actual_num == expected_num
