@@ -32,6 +32,14 @@ class UserActivity():
         self.meme_counter = Counter()      # meme -> count
 
 
+class CommunityActivity():
+
+    def __init__(self):
+        self.num_tweets = 0
+        self.meme_counter = Counter() # meme -> count
+        self.retweet_counter = Counter() # tweet_id ->count
+
+
 class TweetsManager():
 
 
@@ -113,11 +121,9 @@ class TweetsManager():
     def analyze_communities(self, n_iterations = 5):
         self.community_user_map = {}                       # community_id -> list of user_id
         self.user_community_map = {}                       # user_id -> community_id
-        self.community_meme_counter = defaultdict(Counter)  # community_id -> meme counter
-        self.community_retweet_counter = defaultdict(Counter) # community_id -> tweet_id counter
+        self.community_activity_map = defaultdict(CommunityActivity) # community_id -> CommunityActivity
         self.inter_comm_retweet_counter = Counter()        # (retweeter_comm, retweeted_comm) -> retweet counter
         self.inter_comm_reply_counter = Counter()          # (replying_comm, replied_to_comm) -> reply counter
-        self.comm_tweet_counter = Counter()                # community_id -> num tweets
 
         self.urg.make_graph()
         self.partition = la.find_partition(
@@ -146,10 +152,10 @@ class TweetsManager():
             if tweeter_community == tweeted_community:
                 comm = tweeter_community
                 for retweet_id in self.retweets[user_pair]:
-                    self.community_retweet_counter[comm][retweet_id] += 1
+                    self.community_activity_map[comm].retweet_counter[retweet_id] += 1
                 pair_meme_counter = self.retweet_meme_counter[(tweeter_id, retweeted_id)]
                 for meme in pair_meme_counter:
-                    self.community_meme_counter[comm][meme] += pair_meme_counter[meme]
+                    self.community_activity_map[comm].meme_counter[meme] += pair_meme_counter[meme]
             else:
                 self.inter_comm_retweet_counter[(tweeter_community, tweeted_community)] += 1
         
@@ -167,5 +173,5 @@ class TweetsManager():
                 self.user_activity[uid].tweet_count 
                 for uid in self.community_user_map[cid]
                 )
-            self.comm_tweet_counter[cid] = num_tw
+            self.community_activity_map[cid].num_tweets = num_tw
                

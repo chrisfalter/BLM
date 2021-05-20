@@ -1,8 +1,9 @@
-from typing import Dict
+from enum import IntEnum
+from typing import Dict, Tuple
 
 import sqlite3 as sql
 
-from src.tweet_mgr import TweetsManager, UserActivity
+from src.tweet_mgr import CommunityActivity, TweetsManager, UserActivity
 
 _account_table = \
 """CREATE TABLE IF NOT EXISTS Account (
@@ -15,6 +16,7 @@ _community_table = \
     CommunityId INT,
     BlmSupport INT,
     Sentiment REAL,
+    NumTweets INT,
     PRIMARY KEY (PeriodId, CommunityId)
 ) without RowId"""
 
@@ -28,7 +30,7 @@ _account_activity_table = \
     NumRetweeted INT,
     NumReplies INT,
     NumRepliedTo INT,
-    PRIMARY KEY (AccountId, PeriodId, CommunityId),
+    PRIMARY KEY (AccountId, PeriodId),
     FOREIGN KEY (AccountId) REFERENCES Account (AccountId),
     FOREIGN KEY (PeriodId, CommunityId) REFERENCES Community (PeriodId, CommunityId)
 ) without RowId"""
@@ -55,6 +57,34 @@ _reply_table = \
     FOREIGN KEY (ReplyAccountId) REFERENCES Account (AccountId)
 ) without RowId"""    
 
+_community_meme_table = \
+"""CREATE TABLE IF NOT EXISTS CommunityMeme (
+    PeriodId INT,
+    CommunityId INT,
+    Meme TEXT,
+    Count INT,
+    PRIMARY KEY (PeriodId, CommunityId, Meme),
+    FOREIGN KEY (PeriodId, CommunityId) REFERENCES Community (PeriodId, CommunityId)
+) without RowId"""  
+
+class AccountActivity(IntEnum):
+    AccountId = 0
+    PeriodId = 1
+    CommunityId = 2
+    NumTweets = 3
+    NumRetweets = 4
+    NumRetweeted = 5
+    NumReplies = 6
+    NumRepliedTo = 7
+
+
+class Community(IntEnum):
+    PeriodId = 0
+    CommunityId = 1
+    BlmSupport = 2
+    Sentiment = 3
+    NumTweets = 4
+
 
 class BlmActivityDb():
 
@@ -72,12 +102,14 @@ class BlmActivityDb():
             cur.execute(_account_activity_table)
             cur.execute(_retweet_table)
             cur.execute(_reply_table)
+            cur.execute(_community_meme_table)
 
 
     def save_tweets_mgr(self, tw_mgr: TweetsManager, period_no: int):
         self._save_accounts(tw_mgr.user_activity)
-        self._save_communities(tw_mgr.community_user_map, period_no)
+        self._save_communities(tw_mgr.community_activity_map, period_no)
         self._save_user_activity(tw_mgr.user_activity, tw_mgr.user_community_map, period_no)
+        self._save_community_activity(tw_mgr.community_activity_map, period_no)
 
 
     def _save_accounts(self, user_activity_map):
@@ -88,12 +120,13 @@ class BlmActivityDb():
                 cur.execute(account_insert, (user_id,))
 
 
-    def _save_communities(self, community_user_map, period_no):
-        community_insert = "INSERT into Community(PeriodId, CommunityId) values (?, ?)"
+    def _save_communities(self, community_activity_map, period_no):
+        community_insert = "INSERT into Community(PeriodId, CommunityId, NumTweets) values (?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
-            for community_id in community_user_map:
-                cur.execute(community_insert, (period_no, community_id))
+            for community_id, community_activity in community_activity_map.items():
+                num_tweets = community_activity.num_tweets
+                cur.execute(community_insert, (period_no, community_id, num_tweets))
 
 
     def _save_user_activity(self, user_activity_map: Dict[str, UserActivity], user_community_map, period_no):
@@ -113,15 +146,47 @@ class BlmActivityDb():
                     user_activity.replied_to_count
                 )
                 cur.execute(account_activity_insert, vals)
-        
-
-    def communities_summary_by_period(self, period_no):
-        pass
 
 
-    def user_summary_by_period(self, user_id, period_no):
-        pass
+    def _save_community_activity(self, comm_activity_map, period_no):
+        comm_meme_insert = "INSERT into CommunityMeme Values(?, ?, ?, ?)"
+        with self.conn:
+            cur= self.conn.cursor()
+            for community_id, comm_activity in comm_activity_map.items():
+                pass # TODO: community-meme, community-tweet-count
+
+
+    def user_summary_by_period(self, user_id: str, period_no: int) -> Tuple[int, UserActivity]:
+        """returns a tuple of community_id, user_activity for a given user in a given period"""
+        query = "SELECT * from AccountActivity where AccountId = ? and PeriodId = ?"
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(query, (user_id, period_no))
+            r = cur.fetchone()
+        community_id = r[AccountActivity.CommunityId]
+        user_activity = UserActivity()
+        user_activity.tweet_count = r[AccountActivity.NumTweets]
+        user_activity.retweet_count = r[AccountActivity.NumRetweets]
+        user_activity.retweeted_count = r[AccountActivity.NumRetweeted]
+        user_activity.reply_count = r[AccountActivity.NumReplies]
+        user_activity.replied_to_count = r[AccountActivity.NumRepliedTo]
+        return community_id, user_activity
 
 
     def user_summary(self, user_id):
+        pass
+
+
+    def community_summary(self, community_id: int, period_no: int) -> CommunityActivity:
+        community_query = "SELECT * from Community where PeriodId = ? and CommunityId = ?"
+        community_activity = CommunityActivity()
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(community_query, (period_no, community_id))
+            r = cur.fetchone()
+        community_activity.num_tweets = r[Community.NumTweets]
+        return community_activity
+
+
+    def communities_summary_by_period(self, period_no):
         pass
