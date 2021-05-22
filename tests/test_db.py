@@ -53,8 +53,22 @@ def test_dbCommunityNumTweets_isAccurate(get_db, get_communities):
 
 
 def test_dbCommunityMemeCounts_areAccurate(get_db, get_communities):
-    pass # TODO: write the test
+    db: BlmActivityDb = get_db
+    tw_mgr = get_communities
+    community_activity_map:Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    for community_id, activity in community_activity_map.items():
+        expected_meme_counter = activity.meme_counter
+        community_summary = db.community_summary(community_id, _period)
+        actual_meme_counter = community_summary.meme_counter
+        assert actual_meme_counter == expected_meme_counter
 
 
 def test_dbCommunityRetweetCounts_areAccurate(get_db, get_communities):
-    pass # TODO: write the test
+    db: BlmActivityDb = get_db
+    tw_mgr = get_communities
+    community_activity_map:Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    for community_id, activity in community_activity_map.items():
+        expected_retweet_counter = activity.retweet_counter
+        community_summary = db.community_summary(community_id, _period)
+        actual_retweet_counter = community_summary.retweet_counter
+        assert actual_retweet_counter == expected_retweet_counter

@@ -65,7 +65,17 @@ _community_meme_table = \
     Count INT,
     PRIMARY KEY (PeriodId, CommunityId, Meme),
     FOREIGN KEY (PeriodId, CommunityId) REFERENCES Community (PeriodId, CommunityId)
-) without RowId"""  
+) without RowId"""
+
+_community_retweet_table = \
+"""CREATE TABLE IF NOT EXISTS CommunityRetweet (
+    PeriodId INT,
+    CommunityId INT,
+    TweetId INT,
+    NumRetweets INT,
+    PRIMARY KEY (PeriodId, CommunityId, TweetId),
+    FOREIGN KEY (PeriodId, CommunityId) REFERENCES Community (PeriodId, CommunityId)
+) without RowId"""
 
 class AccountActivity(IntEnum):
     AccountId = 0
@@ -103,6 +113,7 @@ class BlmActivityDb():
             cur.execute(_retweet_table)
             cur.execute(_reply_table)
             cur.execute(_community_meme_table)
+            cur.execute(_community_retweet_table)
 
 
     def save_tweets_mgr(self, tw_mgr: TweetsManager, period_no: int):
@@ -135,7 +146,7 @@ class BlmActivityDb():
             cur = self.conn.cursor()
             for user_id, user_activity in user_activity_map.items():
                 comm_id = user_community_map[user_id]
-                vals = (
+                params = (
                     user_id,
                     period_no,
                     comm_id,
@@ -145,15 +156,21 @@ class BlmActivityDb():
                     user_activity.reply_count,
                     user_activity.replied_to_count
                 )
-                cur.execute(account_activity_insert, vals)
+                cur.execute(account_activity_insert, params)
 
 
     def _save_community_activity(self, comm_activity_map, period_no):
         comm_meme_insert = "INSERT into CommunityMeme Values(?, ?, ?, ?)"
+        comm_retweet_insert = "INSERT into CommunityRetweet Values(?, ?, ?, ?)"
         with self.conn:
             cur= self.conn.cursor()
             for community_id, comm_activity in comm_activity_map.items():
-                pass # TODO: community-meme, community-tweet-count
+                for meme, count in comm_activity.meme_counter.items():
+                    params = (period_no, community_id, meme, count)
+                    cur.execute(comm_meme_insert, params)
+                for tweet_id, num_retweets in comm_activity.retweet_counter.items():
+                    params = (period_no, community_id, tweet_id, num_retweets)
+                    cur.execute(comm_retweet_insert, params)
 
 
     def user_summary_by_period(self, user_id: str, period_no: int) -> Tuple[int, UserActivity]:
@@ -179,12 +196,28 @@ class BlmActivityDb():
 
     def community_summary(self, community_id: int, period_no: int) -> CommunityActivity:
         community_query = "SELECT * from Community where PeriodId = ? and CommunityId = ?"
+        meme_query = "SELECT Meme, Count from CommunityMeme where PeriodId = ? and CommunityId = ?"
+        retweet_query = "SELECT TweetId, NumRetweets from CommunityRetweet where PeriodId = ? and CommunityId = ?"
+        params = (period_no, community_id)
         community_activity = CommunityActivity()
         with self.conn:
             cur = self.conn.cursor()
-            cur.execute(community_query, (period_no, community_id))
-            r = cur.fetchone()
-        community_activity.num_tweets = r[Community.NumTweets]
+            cur.execute(community_query, params)
+            comm_row = cur.fetchone()
+            cur.execute(meme_query, params)
+            meme_rows = cur.fetchall()
+            cur.execute(retweet_query, params)
+            retweet_rows = cur.fetchall()
+        # num tweets
+        community_activity.num_tweets = comm_row[Community.NumTweets]
+        # memes
+        meme_pos, count_pos = 0, 1
+        for row in meme_rows:
+            community_activity.meme_counter[row[meme_pos]] = row[count_pos]
+        # retweets
+        tweet_id_pos, num_retweets_pos = 0, 1
+        for row in retweet_rows:
+            community_activity.retweet_counter[row[tweet_id_pos]] = row[num_retweets_pos]
         return community_activity
 
 
