@@ -1,3 +1,4 @@
+from collections import Counter, defaultdict
 from enum import IntEnum
 from typing import Dict, Tuple
 
@@ -14,7 +15,7 @@ _community_table = \
 """CREATE TABLE IF NOT EXISTS Community (
     PeriodId INT,
     CommunityId INT,
-    BlmSupport INT,
+    SupportsBlm INT,
     Sentiment REAL,
     NumTweets INT,
     PRIMARY KEY (PeriodId, CommunityId)
@@ -91,7 +92,7 @@ class AccountActivity(IntEnum):
 class Community(IntEnum):
     PeriodId = 0
     CommunityId = 1
-    BlmSupport = 2
+    SupportsBlm = 2
     Sentiment = 3
     NumTweets = 4
 
@@ -163,7 +164,7 @@ class BlmActivityDb():
         comm_meme_insert = "INSERT into CommunityMeme Values(?, ?, ?, ?)"
         comm_retweet_insert = "INSERT into CommunityRetweet Values(?, ?, ?, ?)"
         with self.conn:
-            cur= self.conn.cursor()
+            cur = self.conn.cursor()
             for community_id, comm_activity in comm_activity_map.items():
                 for meme, count in comm_activity.meme_counter.items():
                     params = (period_no, community_id, meme, count)
@@ -171,6 +172,19 @@ class BlmActivityDb():
                 for tweet_id, num_retweets in comm_activity.retweet_counter.items():
                     params = (period_no, community_id, tweet_id, num_retweets)
                     cur.execute(comm_retweet_insert, params)
+
+    def save_community_sentiment(self, period_no, community_id, sentiment):
+        update = "UPDATE Community SET Sentiment = ? where PeriodId = ? and CommunityId = ?"
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(update, (sentiment, period_no, community_id))
+
+
+    def save_community_support(self, period_no, community_id, supports_blm):
+        update = "UPDATE Community SET SupportsBlm = ? where PeriodId = ? and CommunityId = ?"
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(update, (supports_blm, period_no, community_id))
 
 
     def user_summary_by_period(self, user_id: str, period_no: int) -> Tuple[int, UserActivity]:
@@ -208,8 +222,10 @@ class BlmActivityDb():
             meme_rows = cur.fetchall()
             cur.execute(retweet_query, params)
             retweet_rows = cur.fetchall()
-        # num tweets
+        # community
         community_activity.num_tweets = comm_row[Community.NumTweets]
+        community_activity.sentiment = comm_row[Community.Sentiment]
+        community_activity.supports_blm = comm_row[Community.SupportsBlm]
         # memes
         meme_pos, count_pos = 0, 1
         for row in meme_rows:
@@ -221,5 +237,35 @@ class BlmActivityDb():
         return community_activity
 
 
-    def communities_summary_by_period(self, period_no):
-        pass
+    def communities_summary_by_period(self, period_no: int) -> Dict[int, CommunityActivity]:
+        """Returns a map of community_id -> CommunityActivity for the requested period"""
+        comm_query = "SELECT CommunityId, SupportsBlm, Sentiment, NumTweets from Community where PeriodId = ?"
+        meme_query = "SELECT CommunityId, Meme, Count from CommunityMeme where PeriodId = ?"
+        retweet_query = "SELECT CommunityId, TweetId, NumRetweets from CommunityRetweet where PeriodId = ?"
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(comm_query, (period_no,))
+            comm_rows = cur.fetchall()
+            cur.execute(meme_query, (period_no,))
+            meme_rows = cur.fetchall()
+            cur.execute(retweet_query, (period_no,))
+            retweet_rows = cur.fetchall()
+        summary = defaultdict(CommunityActivity)
+        # community
+        id_pos, supports_blm_pos, sentiment_pos, num_tweets_pos = 0, 1, 2, 3
+        for row in comm_rows:
+            activity = summary[row[id_pos]]
+            activity.num_tweets = row[num_tweets_pos] 
+            activity.supports_blm = row[supports_blm_pos]
+            activity.sentiment = row[sentiment_pos]
+        # memes
+        id_pos, meme_pos, count_pos = 0, 1, 2
+        for row in meme_rows:
+            activity = summary[row[id_pos]]
+            activity.meme_counter[row[meme_pos]] = row[count_pos]
+        # retweets
+        id_pos, tweet_id_pos, count_pos = 0, 1, 2
+        for row in retweet_rows:
+            activity = summary[row[id_pos]]
+            activity.retweet_counter[row[tweet_id_pos]] = row[count_pos]
+        return summary

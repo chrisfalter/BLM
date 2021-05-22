@@ -1,4 +1,5 @@
 import pytest
+from random import random
 import sys
 sys.path.append("src")
 sys.path.append("tests")
@@ -44,7 +45,7 @@ def test_dbUserActivity_isSavedByPeriod(get_db, get_communities):
 def test_dbCommunityNumTweets_isAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
     tw_mgr = get_communities
-    community_activity_map:Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
     for community_id, activity in community_activity_map.items():
         expected_tweet_count = activity.num_tweets
         community_summary = db.community_summary(community_id, _period)
@@ -52,10 +53,36 @@ def test_dbCommunityNumTweets_isAccurate(get_db, get_communities):
         assert actual_tweet_count == expected_tweet_count
 
 
+def test_dbCommunitySentimentScores_areAccurate(get_db, get_communities):
+    """verifies SupportsBLM and Sentiment attributes of Community table"""
+    db: BlmActivityDb = get_db
+    tw_mgr = get_communities
+    community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    for community_id in community_activity_map:
+        expected_sentiment = random()
+        db.save_community_sentiment(_period, community_id, expected_sentiment)
+        comm_summary = db.community_summary(community_id, _period)
+        actual_sentiment = comm_summary.sentiment
+        assert actual_sentiment == expected_sentiment
+
+
+def test_dbCommunitySupportsBlmFlags_areAccurate(get_db, get_communities):
+    """verifies SupportsBLM and Sentiment attributes of Community table"""
+    db: BlmActivityDb = get_db
+    tw_mgr = get_communities
+    community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    for row_num, community_id in enumerate(community_activity_map):
+        expected_support = row_num < 1
+        db.save_community_support(_period, community_id, expected_support)
+        comm_summary = db.community_summary(community_id, _period)
+        actual_support = comm_summary.supports_blm
+        assert actual_support == expected_support
+
+
 def test_dbCommunityMemeCounts_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
     tw_mgr = get_communities
-    community_activity_map:Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
     for community_id, activity in community_activity_map.items():
         expected_meme_counter = activity.meme_counter
         community_summary = db.community_summary(community_id, _period)
@@ -66,9 +93,22 @@ def test_dbCommunityMemeCounts_areAccurate(get_db, get_communities):
 def test_dbCommunityRetweetCounts_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
     tw_mgr = get_communities
-    community_activity_map:Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
     for community_id, activity in community_activity_map.items():
         expected_retweet_counter = activity.retweet_counter
         community_summary = db.community_summary(community_id, _period)
         actual_retweet_counter = community_summary.retweet_counter
         assert actual_retweet_counter == expected_retweet_counter
+
+
+def test_dbCommunitiesSummary_isAccurate(get_db, get_communities):
+    db: BlmActivityDb = get_db
+    tw_mgr = get_communities
+    expected_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
+    actual_map: Dict[int, CommunityActivity] = db.communities_summary_by_period(_period)
+    for expected_id, expected_activity in expected_map.items():
+        actual_activity = actual_map[expected_id]
+        assert actual_activity.num_tweets == expected_activity.num_tweets
+        assert actual_activity.meme_counter == expected_activity.meme_counter
+        assert actual_activity.retweet_counter == actual_activity.retweet_counter
+        # TODO: test activity.supports_blm and activity.sentiment

@@ -36,6 +36,8 @@ class CommunityActivity():
 
     def __init__(self):
         self.num_tweets = 0
+        self.supports_blm = False
+        self.sentiment = 0.0
         self.meme_counter = Counter() # meme -> count
         self.retweet_counter = Counter() # tweet_id ->count
 
