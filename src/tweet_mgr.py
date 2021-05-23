@@ -29,6 +29,7 @@ class UserActivity():
         self.retweeted_count = 0
         self.reply_count = 0
         self.replied_to_count = 0
+        self.influence = 0.0               # PageRank score
         self.meme_counter = Counter()      # meme -> count
 
 
@@ -120,7 +121,8 @@ class TweetsManager():
                 self.user_activity[reply.user_id].reply_count += 1
 
 
-    def analyze_communities(self, n_iterations = 5):
+    def analyze_graph(self, n_iterations = 5):
+        """Community detection and account influence"""
         self.community_user_map = {}                       # community_id -> list of user_id
         self.user_community_map = {}                       # user_id -> community_id
         self.community_activity_map = defaultdict(CommunityActivity) # community_id -> CommunityActivity
@@ -176,4 +178,8 @@ class TweetsManager():
                 for uid in self.community_user_map[cid]
                 )
             self.community_activity_map[cid].num_tweets = num_tw
-               
+
+        # process influence scores
+        influence_map = self.urg.get_influence_scores()
+        for account, score in influence_map.items():
+            self.user_activity[account].influence = score   

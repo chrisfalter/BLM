@@ -31,6 +31,7 @@ _account_activity_table = \
     NumRetweeted INT,
     NumReplies INT,
     NumRepliedTo INT,
+    Influence REAL,
     PRIMARY KEY (AccountId, PeriodId),
     FOREIGN KEY (AccountId) REFERENCES Account (AccountId),
     FOREIGN KEY (PeriodId, CommunityId) REFERENCES Community (PeriodId, CommunityId)
@@ -87,6 +88,7 @@ class AccountActivity(IntEnum):
     NumRetweeted = 5
     NumReplies = 6
     NumRepliedTo = 7
+    Influence = 8
 
 
 class Community(IntEnum):
@@ -142,7 +144,7 @@ class BlmActivityDb():
 
 
     def _save_user_activity(self, user_activity_map: Dict[str, UserActivity], user_community_map, period_no):
-        account_activity_insert = "INSERT into AccountActivity Values(?, ?, ?, ?, ?, ?, ?, ?)"
+        account_activity_insert = "INSERT into AccountActivity Values(?, ?, ?, ?, ?, ?, ?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
             for user_id, user_activity in user_activity_map.items():
@@ -155,7 +157,8 @@ class BlmActivityDb():
                     user_activity.retweet_count,
                     user_activity.retweeted_count,
                     user_activity.reply_count,
-                    user_activity.replied_to_count
+                    user_activity.replied_to_count,
+                    user_activity.influence,
                 )
                 cur.execute(account_activity_insert, params)
 
@@ -201,6 +204,7 @@ class BlmActivityDb():
         user_activity.retweeted_count = r[AccountActivity.NumRetweeted]
         user_activity.reply_count = r[AccountActivity.NumReplies]
         user_activity.replied_to_count = r[AccountActivity.NumRepliedTo]
+        user_activity.influence = r[AccountActivity.Influence]
         return community_id, user_activity
 
 
