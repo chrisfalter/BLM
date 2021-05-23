@@ -28,7 +28,7 @@ def get_retweet_graph(get_tw_mgr):
 @pytest.fixture
 def get_communities(get_tw_mgr):
     tw_mgr = get_tw_mgr
-    tw_mgr.analyze_communities()
+    tw_mgr.analyze_graph()
     return tw_mgr
 
 

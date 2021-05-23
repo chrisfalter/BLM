@@ -79,7 +79,7 @@ def get_tweet_text_by_id(id_):
 
 resolution = 1/(4*len(tm.user_retweeted_frequency))
 
-tm.analyze_communities(resolution_parameter=resolution, n_iterations=-1)
+tm.analyze_graph(resolution_parameter=resolution, n_iterations=-1)
 
 # +
 # Get Initial Report
