@@ -41,6 +41,7 @@ def test_dbUserActivity_isSavedByPeriod(get_db, get_communities):
         assert actual_user_activity.reply_count == expected_user_activity.reply_count
         assert actual_user_activity.replied_to_count == expected_user_activity.replied_to_count
         assert actual_user_activity.influence == expected_user_activity.influence
+        assert actual_user_activity.influence_rank == expected_user_activity.influence_rank
 
 
 def test_dbCommunityNumTweets_isAccurate(get_db, get_communities):

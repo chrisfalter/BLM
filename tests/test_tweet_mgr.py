@@ -4,8 +4,9 @@ import json
 import pytest
 import sys
 sys.path.append("src")
+from typing import Dict
 
-from src.tweet_mgr import TweetsManager
+from src.tweet_mgr import TweetsManager, UserActivity
 
 
 @pytest.fixture
@@ -114,6 +115,21 @@ def test_retweetMemeCounter_hasCorrectCounts(get_tw_mgr):
         assert actual[user_pair] == expected[user_pair]
     assert len(actual) == len(expected)
 
+
+def test_accountInfluence_isSortedCorrectly(get_communities):
+    account_activity_map:Dict[str, UserActivity] = get_communities.user_activity
+    for account_activity in account_activity_map.values():
+        assert account_activity.influence != 0.0
+        assert account_activity.influence_rank != 0
+    influencers = ["335972576", "2378713202"]
+    followers = ["2746297971", "2746297972", "247052159", "247052160"]
+    for influencer in influencers:
+        for follower in followers:
+            influencer_activity = account_activity_map[influencer]
+            follower_activity = account_activity_map[follower]
+            assert influencer_activity.influence > follower_activity.influence
+            assert influencer_activity.influence_rank < follower_activity.influence_rank
+    
 
 def test_communityUserMap_hasCorrectMemberLists(get_communities):
     community_user_map = get_communities.community_user_map
