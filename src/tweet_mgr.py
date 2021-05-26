@@ -30,6 +30,7 @@ class UserActivity():
         self.reply_count = 0
         self.replied_to_count = 0
         self.influence = 0.0               # PageRank score
+        self.influence_rank = 0
         self.meme_counter = Counter()      # meme -> count
 
 
@@ -182,4 +183,8 @@ class TweetsManager():
         # process influence scores
         influence_map = self.urg.get_influence_scores()
         for account, score in influence_map.items():
-            self.user_activity[account].influence = score   
+            self.user_activity[account].influence = score 
+        scores = [(account, influence_map[account]) for account in influence_map]  
+        sorted_by_influence = sorted(scores, key=lambda t: t[1], reverse=True)
+        for i, t in enumerate(sorted_by_influence):
+            self.user_activity[t[0]].influence_rank = i + 1 # best rank = 1, not 0
