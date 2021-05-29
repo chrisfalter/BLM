@@ -23,3 +23,23 @@ class UserRetweetGraph():
         for account, score in zip(accounts, scores):
             results[account] = score
         return results
+
+    def save_graph(self, fname:str =''):
+        """
+        Returns the number of bytes written
+        """
+        if not fname:
+            raise ValueError('must provide name of file')
+        if fname is str and not fname.endswith('.ncol'):
+            fname = fname + '.ncol'
+        return self.g.write_ncol(fname, 'name', 'weight')
+
+    def load_graph(self, fname):
+        """
+        Rehydrates the graph stored at fname
+        """
+        if not fname:
+            raise ValueError('must provide name of file')
+        if fname is str and not fname.endswith('.ncol'):
+            fname = fname + '.ncol'
+        self.g = ig.Graph.Read_Ncol(fname, names=True, weights=True, directed=True)
