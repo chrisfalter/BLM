@@ -119,7 +119,7 @@ def test_dbCommunityRetweetCounts_areAccurate(get_db, get_communities):
 def test_dbInterCommunityRetweetCounts_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
     expected_retweet_counts = inter_comm_retweets
-    actual_retweet_counts = db.inter_community_retweets_by_period(_period)
+    actual_retweet_counts = db.inter_community_retweet_counts_by_period(_period)
     for k in expected_retweet_counts:
         assert actual_retweet_counts[k] == expected_retweet_counts[k]
 
@@ -127,7 +127,7 @@ def test_dbInterCommunityRetweetCounts_areAccurate(get_db, get_communities):
 def test_dbInterCommunityReplyCounts_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
     expected_reply_counts = inter_comm_replies
-    actual_reply_counts = db.inter_community_replies_by_period(_period)
+    actual_reply_counts = db.inter_community_reply_counts_by_period(_period)
     for k in expected_reply_counts:
         assert actual_reply_counts[k] == expected_reply_counts[k]
 

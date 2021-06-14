@@ -52,6 +52,9 @@ _retweet_table = \
     SourceAccountId TEXT,
     PeriodId INT,
     Count INT,
+    IsCrossCommunity INT,
+    RetweetCommunityId INT,
+    SourceCommunityId INT,
     PRIMARY KEY (RetweetAccountId, SourceAccountId, PeriodId),
     FOREIGN KEY (SourceAccountId) REFERENCES Account (AccountId),
     FOREIGN KEY (RetweetAccountId) REFERENCES Account (AccountId)
@@ -63,6 +66,9 @@ _reply_table = \
     ToAccountId TEXT,
     PeriodId INT,
     Count INT,
+    IsCrossCommunity INT,
+    ReplyCommunityId INT,
+    ToCommunityId INT,
     PRIMARY KEY (ToAccountId, ReplyAccountId, PeriodId),
     FOREIGN KEY (ToAccountId) REFERENCES Account (AccountId),
     FOREIGN KEY (ReplyAccountId) REFERENCES Account (AccountId)
@@ -98,7 +104,7 @@ _inter_community_retweet_table = \
 ) without RowId"""
 
 _inter_community_reply_table = \
-"""CREATE TABLE IF NOT EXISTS InterCommunityRetweet (
+"""CREATE TABLE IF NOT EXISTS InterCommunityReply (
     PeriodId INT,
     ReplyingCommunityId INT,
     RepliedToCommunityId INT,
@@ -145,6 +151,8 @@ class BlmActivityDb():
             cur.execute(_reply_table)
             cur.execute(_community_meme_table)
             cur.execute(_community_retweet_table)
+            cur.execute(_inter_community_retweet_table)
+            cur.execute(_inter_community_reply_table)
 
 
     def save_tweets_mgr(self, tw_mgr: TweetsManager, period_no: int):
@@ -152,6 +160,11 @@ class BlmActivityDb():
         self._save_communities(tw_mgr.community_activity_map, period_no)
         self._save_user_activity(tw_mgr.user_activity, tw_mgr.user_community_map, period_no)
         self._save_community_activity(tw_mgr.community_activity_map, period_no)
+        self._save_inter_community_activity(
+            tw_mgr.inter_comm_retweet_counter, 
+            tw_mgr.inter_comm_reply_counter, 
+            period_no,
+        )
 
 
     def _save_accounts(self, user_activity_map):
@@ -204,6 +217,21 @@ class BlmActivityDb():
                 for tweet_id, num_retweets in comm_activity.retweet_counter.items():
                     params = (period_no, community_id, tweet_id, num_retweets)
                     cur.execute(comm_retweet_insert, params)
+
+    def _save_inter_community_activity(self, ic_retweets, ic_replies, period_no):
+        retweet_insert = "INSERT into InterCommunityRetweet Values(?, ?, ?, ?)"
+        reply_insert = "INSERT into InterCommunityReply Values(?, ?, ?, ?)"
+        with self.conn:
+            cur = self.conn.cursor()
+            for k, count in ic_retweets.items():
+                communities = CommunityRetweet(k[0], k[1])
+                params = (period_no, communities.retweeting, communities.retweeted, count)
+                cur.execute(retweet_insert, params)
+            for k, count in ic_replies.items():
+                communities = CommunityReply(k[0], k[1])
+                params = (period_no, communities.replying, communities.replied_to, count)
+                cur.execute(reply_insert, params)
+
 
     def save_community_sentiment(self, period_no, community_id, sentiment):
         update = "UPDATE Community SET Sentiment = ? where PeriodId = ? and CommunityId = ?"
@@ -305,9 +333,35 @@ class BlmActivityDb():
         return summary
 
 
-    def inter_community_retweets_by_period(self, period_no: int) -> Counter:
-        pass
+    def inter_community_retweet_counts_by_period(self, period_no: int) -> Counter:
+        """Returns a dict of CommunityRetweet(retweeting, retweeted) -> count"""
+        query = "SELECT RetweetingCommunityId, RetweetedCommunityId, NumRetweets " \
+                "FROM InterCommunityRetweet " \
+                "WHERE PeriodId = ?"
+        c = Counter()
+        retweeting_pos, retweeted_pos, count_pos = 0, 1, 2
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(query, (period_no,))
+            retweet_rows = cur.fetchall()
+            for row in retweet_rows:
+                cr_pair = CommunityRetweet(retweeting=row[retweeting_pos], retweeted=row[retweeted_pos])
+                c[cr_pair] = row[count_pos]
+        return c
 
 
-    def inter_community_replies_by_period(self, period_no: int) -> Counter:
-        pass
+    def inter_community_reply_counts_by_period(self, period_no: int) -> Counter:
+        """Returns a dict of CommunityReply(replying, replied_to) -> count"""
+        query = "SELECT ReplyingCommunityId, RepliedToCommunityId, NumRetweets " \
+                "FROM InterCommunityReply " \
+                "WHERE PeriodId = ?"
+        c = Counter()
+        replying_pos, replied_to_pos, count_pos = 0, 1, 2
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(query, (period_no,))
+            reply_rows = cur.fetchall()
+            for row in reply_rows:
+                cr_pair = CommunityReply(replying=row[replying_pos], replied_to=row[replied_to_pos])
+                c[cr_pair] = row[count_pos]
+        return c
