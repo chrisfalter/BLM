@@ -4,7 +4,15 @@ from typing import Dict, Tuple
 
 import sqlite3 as sql
 
-from src.tweet_mgr import CommunityActivity, TweetsManager, UserActivity
+from src.tweet_mgr import (
+    AccountReply,
+    AccountRetweet,
+    CommunityReply,
+    CommunityRetweet,
+    CommunityActivity, 
+    TweetsManager, 
+    UserActivity,
+)
 
 _account_table = \
 """CREATE TABLE IF NOT EXISTS Account (
@@ -78,6 +86,24 @@ _community_retweet_table = \
     NumRetweets INT,
     PRIMARY KEY (PeriodId, CommunityId, TweetId),
     FOREIGN KEY (PeriodId, CommunityId) REFERENCES Community (PeriodId, CommunityId)
+) without RowId"""
+
+_inter_community_retweet_table = \
+"""CREATE TABLE IF NOT EXISTS InterCommunityRetweet (
+    PeriodId INT,
+    RetweetingCommunityId INT,
+    RetweetedCommunityId INT,
+    NumRetweets INT,
+    PRIMARY KEY (PeriodId, RetweetingCommunityId, RetweetedCommunityId)
+) without RowId"""
+
+_inter_community_reply_table = \
+"""CREATE TABLE IF NOT EXISTS InterCommunityRetweet (
+    PeriodId INT,
+    ReplyingCommunityId INT,
+    RepliedToCommunityId INT,
+    NumRetweets INT,
+    PRIMARY KEY (PeriodId, ReplyingCommunityId, RepliedToCommunityId)
 ) without RowId"""
 
 class AccountActivity(IntEnum):
@@ -277,3 +303,11 @@ class BlmActivityDb():
             activity = summary[row[id_pos]]
             activity.retweet_counter[row[tweet_id_pos]] = row[count_pos]
         return summary
+
+
+    def inter_community_retweets_by_period(self, period_no: int) -> Counter:
+        pass
+
+
+    def inter_community_replies_by_period(self, period_no: int) -> Counter:
+        pass

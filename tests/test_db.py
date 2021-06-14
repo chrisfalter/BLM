@@ -6,17 +6,30 @@ sys.path.append("tests")
 from typing import Dict
 
 from src.blm_activity_db import BlmActivityDb
-from src.tweet_mgr import CommunityActivity, UserActivity
+from src.tweet_mgr import (
+    CommunityActivity, 
+    CommunityReply,
+    CommunityRetweet,
+    UserActivity
+)
 from tests.test_tweet_mgr import get_communities, get_tw_mgr
 
 
 _period = 0
 
 
+# These inter-community activity dictionaries do not correspond to the individual
+# tweets. They are fabricated simply to test inter-community activity tables.
+inter_comm_retweets = {CommunityRetweet(0, 1): 4, CommunityRetweet(1, 0): 3}
+inter_comm_replies = {CommunityReply(0, 1): 8, CommunityReply(1, 0): 7}
+
 @pytest.fixture
 def get_db(get_communities) -> BlmActivityDb:
     db = BlmActivityDb(":memory:", initialize_db=True)
-    db.save_tweets_mgr(get_communities, _period)
+    tw_mgr = get_communities
+    tw_mgr.inter_comm_retweet_counter = inter_comm_retweets
+    tw_mgr.inter_comm_reply_counter = inter_comm_replies
+    db.save_tweets_mgr(tw_mgr, _period)
     return db
 
 
@@ -101,6 +114,22 @@ def test_dbCommunityRetweetCounts_areAccurate(get_db, get_communities):
         community_summary = db.community_summary(community_id, _period)
         actual_retweet_counter = community_summary.retweet_counter
         assert actual_retweet_counter == expected_retweet_counter
+
+
+def test_dbInterCommunityRetweetCounts_areAccurate(get_db, get_communities):
+    db: BlmActivityDb = get_db
+    expected_retweet_counts = inter_comm_retweets
+    actual_retweet_counts = db.inter_community_retweets_by_period(_period)
+    for k in expected_retweet_counts:
+        assert actual_retweet_counts[k] == expected_retweet_counts[k]
+
+
+def test_dbInterCommunityReplyCounts_areAccurate(get_db, get_communities):
+    db: BlmActivityDb = get_db
+    expected_reply_counts = inter_comm_replies
+    actual_reply_counts = db.inter_community_replies_by_period(_period)
+    for k in expected_reply_counts:
+        assert actual_reply_counts[k] == expected_reply_counts[k]
 
 
 def test_dbCommunitiesSummary_isAccurate(get_db, get_communities):
