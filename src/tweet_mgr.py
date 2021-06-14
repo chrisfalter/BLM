@@ -1,4 +1,5 @@
 from collections import Counter, defaultdict
+from typing import NamedTuple
 
 import leidenalg as la
 
@@ -42,6 +43,26 @@ class CommunityActivity():
         self.sentiment = 0.0
         self.meme_counter = Counter() # meme -> count
         self.retweet_counter = Counter() # tweet_id ->count
+
+
+class AccountRetweet(NamedTuple):
+    retweeter: str
+    retweeted: str
+
+
+class AccountReply(NamedTuple):
+    replying: str
+    replied_to: str
+
+
+class CommunityRetweet(NamedTuple):
+    retweeting: int
+    retweeted: int
+
+
+class CommunityReply(NamedTuple):
+    replying: int
+    replied_to: int
 
 
 class TweetsManager():
@@ -127,8 +148,8 @@ class TweetsManager():
         self.community_user_map = {}                       # community_id -> list of user_id
         self.user_community_map = {}                       # user_id -> community_id
         self.community_activity_map = defaultdict(CommunityActivity) # community_id -> CommunityActivity
-        self.inter_comm_retweet_counter = Counter()        # (retweeter_comm, retweeted_comm) -> retweet counter
-        self.inter_comm_reply_counter = Counter()          # (replying_comm, replied_to_comm) -> reply counter
+        self.inter_comm_retweet_counter = Counter()        # (retweeter_comm, retweeted_comm) -> numRetweets
+        self.inter_comm_reply_counter = Counter()          # (replying_comm, replied_to_comm) -> numReplies
 
         self.urg.make_graph()
         self.partition = la.find_partition(
