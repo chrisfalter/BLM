@@ -198,9 +198,9 @@ def test_interCommunityReplyCounter_hasCorrectCounts(get_communities):
     reply_counter = get_communities.reply_counter
     assert reply_counter[("247052159", "335972576")] == 1
     expected_count = 1
-    assert actual[(blue_community_id, orange_community_id)] == expected_count
+    assert actual[(("247052159", "335972576"), (blue_community_id, orange_community_id))] == expected_count
     expected_count = 0
-    assert actual[(orange_community_id, blue_community_id)] == expected_count
+    assert actual[(("335972576", "247052159"),(orange_community_id, blue_community_id))] == expected_count
 
 
 def test_communityTweetCounter_hasCorrectCounts(get_communities):

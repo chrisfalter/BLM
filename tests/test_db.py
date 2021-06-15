@@ -1,3 +1,5 @@
+from numpy.testing import assert_array_equal
+import pandas as pd
 import pytest
 from random import random
 import sys
@@ -7,6 +9,8 @@ from typing import Dict
 
 from src.blm_activity_db import BlmActivityDb
 from src.tweet_mgr import (
+    AccountReply,
+    AccountRetweet,
     CommunityActivity, 
     CommunityReply,
     CommunityRetweet,
@@ -18,10 +22,16 @@ from tests.test_tweet_mgr import get_communities, get_tw_mgr
 _period = 0
 
 
-# These inter-community activity dictionaries do not correspond to the individual
+# These inter-community activity dictionaries are logically inconsistent with individual
 # tweets. They are fabricated simply to test inter-community activity tables.
-inter_comm_retweets = {CommunityRetweet(0, 1): 4, CommunityRetweet(1, 0): 3}
-inter_comm_replies = {CommunityReply(0, 1): 8, CommunityReply(1, 0): 7}
+inter_comm_retweets = {
+    (AccountRetweet("335972576", "2378713202"), CommunityRetweet(0, 1)): 4, 
+    (AccountRetweet("2378713202", "335972576"), CommunityRetweet(1, 0)): 3
+}
+inter_comm_replies = {
+    (AccountReply("335972576", "2378713202"), CommunityReply(0, 1)): 8, 
+    (AccountReply("2378713202", "335972576"), CommunityReply(1, 0)): 7
+}
 
 @pytest.fixture
 def get_db(get_communities) -> BlmActivityDb:
@@ -118,18 +128,30 @@ def test_dbCommunityRetweetCounts_areAccurate(get_db, get_communities):
 
 def test_dbInterCommunityRetweetCounts_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
-    expected_retweet_counts = inter_comm_retweets
-    actual_retweet_counts = db.inter_community_retweet_counts_by_period(_period)
-    for k in expected_retweet_counts:
-        assert actual_retweet_counts[k] == expected_retweet_counts[k]
+    actual_df = db.inter_community_retweet_counts_by_period(_period)
+    assert isinstance(actual_df, pd.DataFrame)
+    expected = []
+    for (ar, cr), count in inter_comm_retweets.items():
+        expected.append([ar[0], ar[1], cr[0], cr[1], count])
+    expected_df = pd.DataFrame(expected, columns=list(actual_df.columns))
+    # sort order is not guaranteed, so sort both dataframes to align them
+    actual_df.sort_values(by="RetweetingComm", inplace=True)
+    expected_df.sort_values(by="RetweetingComm", inplace=True)
+    assert_array_equal(actual_df.values, expected_df.values)
 
 
 def test_dbInterCommunityReplyCounts_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
-    expected_reply_counts = inter_comm_replies
-    actual_reply_counts = db.inter_community_reply_counts_by_period(_period)
-    for k in expected_reply_counts:
-        assert actual_reply_counts[k] == expected_reply_counts[k]
+    actual_df = db.inter_community_reply_counts_by_period(_period)
+    assert isinstance(actual_df, pd.DataFrame)
+    expected = []
+    for (ar, cr), count in inter_comm_replies.items():
+        expected.append([ar[0], ar[1], cr[0], cr[1], count])
+    expected_df = pd.DataFrame(expected, columns=list(actual_df.columns))
+    # sort order is not guaranteed, so sort both dataframes to align them
+    actual_df.sort_values(by="ReplyingComm", inplace=True)
+    expected_df.sort_values(by="ReplyingComm", inplace=True)
+    assert_array_equal(actual_df.values, expected_df.values)
 
 
 def test_dbCommunitiesSummary_isAccurate(get_db, get_communities):
