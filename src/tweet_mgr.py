@@ -72,9 +72,9 @@ class TweetsManager():
         self.urg = UserRetweetGraph()                 # to identify communities
         self.tweets = dict()                          # tweet_id -> tweet_text
         self.user_activity = defaultdict(UserActivity)   # user_id -> UserActivity
-        self.retweet_meme_counter = defaultdict(Counter) # (retweeter_id, retweeted_id) -> meme counter
-        self.retweets = defaultdict(list)             # (retweeter_id, retweeted_id) -> list of tweet_id
-        self.reply_counter = Counter()                # (replying_user, replied_to_user) -> tweet_count
+        self.retweet_meme_counter = defaultdict(Counter) # AccountRetweet -> meme counter
+        self.retweets = defaultdict(list)             # AccountRetweet -> list of tweet_id
+        self.reply_counter = Counter()                # AccountReply -> tweet_count
         self.deferred_retweets = []
         self.deferred_reply_tos = []
 
@@ -148,8 +148,8 @@ class TweetsManager():
         self.community_user_map = {}                       # community_id -> list of user_id
         self.user_community_map = {}                       # user_id -> community_id
         self.community_activity_map = defaultdict(CommunityActivity) # community_id -> CommunityActivity
-        self.inter_comm_retweet_counter = Counter()        # (retweeter_comm, retweeted_comm) -> numRetweets
-        self.inter_comm_reply_counter = Counter()          # (replying_comm, replied_to_comm) -> numReplies
+        self.inter_comm_retweet_counter = Counter()        # (AccountRetweet, CommunityRetweet) -> numRetweets
+        self.inter_comm_reply_counter = Counter()          # (AccountReply, CommunityReply) -> numReplies
 
         self.urg.make_graph()
         self.partition = la.find_partition(
@@ -183,7 +183,9 @@ class TweetsManager():
                 for meme in pair_meme_counter:
                     self.community_activity_map[comm].meme_counter[meme] += pair_meme_counter[meme]
             else:
-                self.inter_comm_retweet_counter[(tweeter_community, tweeted_community)] += 1
+                ar = AccountRetweet(retweeter=tweeter_id, retweeted=retweeted_id)
+                cr = CommunityRetweet(tweeter_community, tweeted_community)
+                self.inter_comm_retweet_counter[(ar, cr)] += 1
         
         for user_pair in self.reply_counter:
             replying_comm = self.user_community_map.get(user_pair[0])
@@ -192,7 +194,9 @@ class TweetsManager():
             if replying_comm is None or reply_to_comm is None:
                 continue
             if replying_comm != reply_to_comm:
-                self.inter_comm_reply_counter[(replying_comm, reply_to_comm)] += self.reply_counter[user_pair]
+                ar = AccountReply(replying=user_pair[0], replied_to=user_pair[1])
+                cr = CommunityReply(replying=replying_comm, replied_to=reply_to_comm)
+                self.inter_comm_reply_counter[(ar, cr)] += self.reply_counter[user_pair]
         
         for cid in self.community_user_map:
             num_tw = sum(

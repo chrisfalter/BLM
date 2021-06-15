@@ -1,5 +1,6 @@
 from collections import Counter, defaultdict
 from enum import IntEnum
+import pandas as pd
 from typing import Dict, Tuple
 
 import sqlite3 as sql
@@ -52,9 +53,6 @@ _retweet_table = \
     SourceAccountId TEXT,
     PeriodId INT,
     Count INT,
-    IsCrossCommunity INT,
-    RetweetCommunityId INT,
-    SourceCommunityId INT,
     PRIMARY KEY (RetweetAccountId, SourceAccountId, PeriodId),
     FOREIGN KEY (SourceAccountId) REFERENCES Account (AccountId),
     FOREIGN KEY (RetweetAccountId) REFERENCES Account (AccountId)
@@ -66,9 +64,6 @@ _reply_table = \
     ToAccountId TEXT,
     PeriodId INT,
     Count INT,
-    IsCrossCommunity INT,
-    ReplyCommunityId INT,
-    ToCommunityId INT,
     PRIMARY KEY (ToAccountId, ReplyAccountId, PeriodId),
     FOREIGN KEY (ToAccountId) REFERENCES Account (AccountId),
     FOREIGN KEY (ReplyAccountId) REFERENCES Account (AccountId)
@@ -97,6 +92,8 @@ _community_retweet_table = \
 _inter_community_retweet_table = \
 """CREATE TABLE IF NOT EXISTS InterCommunityRetweet (
     PeriodId INT,
+    RetweetingAccountId TEXT,
+    RetweetedAccountId TEXT,
     RetweetingCommunityId INT,
     RetweetedCommunityId INT,
     NumRetweets INT,
@@ -106,6 +103,8 @@ _inter_community_retweet_table = \
 _inter_community_reply_table = \
 """CREATE TABLE IF NOT EXISTS InterCommunityReply (
     PeriodId INT,
+    ReplyingAccountId TEXT,
+    RepliedToAccountId TEXT,
     ReplyingCommunityId INT,
     RepliedToCommunityId INT,
     NumRetweets INT,
@@ -218,18 +217,17 @@ class BlmActivityDb():
                     params = (period_no, community_id, tweet_id, num_retweets)
                     cur.execute(comm_retweet_insert, params)
 
+
     def _save_inter_community_activity(self, ic_retweets, ic_replies, period_no):
-        retweet_insert = "INSERT into InterCommunityRetweet Values(?, ?, ?, ?)"
-        reply_insert = "INSERT into InterCommunityReply Values(?, ?, ?, ?)"
+        retweet_insert = "INSERT into InterCommunityRetweet Values(?, ?, ?, ?, ?, ?)"
+        reply_insert = "INSERT into InterCommunityReply Values(?, ?, ?, ?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
-            for k, count in ic_retweets.items():
-                communities = CommunityRetweet(k[0], k[1])
-                params = (period_no, communities.retweeting, communities.retweeted, count)
+            for (ar, cr), count in ic_retweets.items():
+                params = (period_no, ar.retweeter, ar.retweeted, cr.retweeting, cr.retweeted, count)
                 cur.execute(retweet_insert, params)
-            for k, count in ic_replies.items():
-                communities = CommunityReply(k[0], k[1])
-                params = (period_no, communities.replying, communities.replied_to, count)
+            for (ar, cr), count in ic_replies.items():
+                params = (period_no, ar.replying, ar.replied_to, cr.replying, cr.replied_to, count)
                 cur.execute(reply_insert, params)
 
 
@@ -333,35 +331,42 @@ class BlmActivityDb():
         return summary
 
 
-    def inter_community_retweet_counts_by_period(self, period_no: int) -> Counter:
-        """Returns a dict of CommunityRetweet(retweeting, retweeted) -> count"""
-        query = "SELECT RetweetingCommunityId, RetweetedCommunityId, NumRetweets " \
+    def inter_community_retweet_counts_by_period(self, period_no: int) -> pd.DataFrame:
+        """Returns DF of inter-community retweets including account info.
+        Note: Columns = RetweetingAcct, RetweetedAcct, RetweetingComm, RetweetedComm, Count"""
+
+        query = "SELECT RetweetingAccountId, RetweetedAccountId, RetweetingCommunityId, RetweetedCommunityId, NumRetweets " \
                 "FROM InterCommunityRetweet " \
                 "WHERE PeriodId = ?"
-        c = Counter()
-        retweeting_pos, retweeted_pos, count_pos = 0, 1, 2
         with self.conn:
             cur = self.conn.cursor()
             cur.execute(query, (period_no,))
             retweet_rows = cur.fetchall()
-            for row in retweet_rows:
-                cr_pair = CommunityRetweet(retweeting=row[retweeting_pos], retweeted=row[retweeted_pos])
-                c[cr_pair] = row[count_pos]
-        return c
+        cols = ["RetweetingAcct", "RetweetedAcct", "RetweetingComm", "RetweetedComm", "Count"]
+        return pd.DataFrame(data=retweet_rows, columns=cols)
 
 
-    def inter_community_reply_counts_by_period(self, period_no: int) -> Counter:
-        """Returns a dict of CommunityReply(replying, replied_to) -> count"""
-        query = "SELECT ReplyingCommunityId, RepliedToCommunityId, NumRetweets " \
+    def inter_community_reply_counts_by_period(self, period_no: int) -> pd.DataFrame:
+        """Returns DF of inter-community retweets including account info.
+        Note: Columns = ReplyingAcct, RepliedToAcct, ReplyingComm, RepliedToComm, Count"""
+
+        query = "SELECT ReplyingAccountId, RepliedToAccountId, ReplyingCommunityId, RepliedToCommunityId, NumRetweets " \
                 "FROM InterCommunityReply " \
                 "WHERE PeriodId = ?"
         c = Counter()
-        replying_pos, replied_to_pos, count_pos = 0, 1, 2
         with self.conn:
             cur = self.conn.cursor()
             cur.execute(query, (period_no,))
             reply_rows = cur.fetchall()
-            for row in reply_rows:
-                cr_pair = CommunityReply(replying=row[replying_pos], replied_to=row[replied_to_pos])
-                c[cr_pair] = row[count_pos]
-        return c
+        cols = ["ReplyingAcct", "RepliedToAcct", "ReplyingComm", "RepliedToComm", "Count"]
+        return pd.DataFrame(data=reply_rows, columns=cols)
+
+
+    def intercomm_account_retweets_by_period(self, period_no: int) -> pd.DataFrame:
+        pass
+
+
+    def intercomm_account_replies_by_period(self, period_no: int) -> pd.DataFrame:
+        """Returns DF of inter-community retweets including account info.
+        Note: Columns = RetweetingAcct, RetweetedAcct, RetweetingComm, RetweetedComm, Count"""
+        pass
