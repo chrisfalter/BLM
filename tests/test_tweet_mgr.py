@@ -209,3 +209,21 @@ def test_communityTweetCounter_hasCorrectCounts(get_communities):
     for community_id in _get_community_ids(get_communities):
         actual_num = activity_map[community_id].num_tweets
         assert actual_num == expected_num
+
+
+def test_filterLowActivityCommunities_shouldKeepOnlyCommunityMeetingThreshold(get_communities):
+    tw_mgr: TweetsManager = get_communities
+    community_id_to_keep = 0
+    comm_activity = tw_mgr.community_activity_map[community_id_to_keep]
+    comm_activity.num_tweets += 3 # internally inconsistent, but needed for test
+    threshold = comm_activity.num_tweets - sum(val for val in comm_activity.retweet_counter.values())
+    tw_mgr.filter_low_activity_communities(threshold)
+    assert len(tw_mgr.community_user_map) == 1
+    assert community_id_to_keep in tw_mgr.community_user_map
+    assert len(tw_mgr.community_activity_map) == 1
+    assert community_id_to_keep in tw_mgr.community_activity_map
+    assert len(tw_mgr.inter_comm_retweet_counter) == 0
+    assert len(tw_mgr.inter_comm_reply_counter) == 0
+    for community_id in tw_mgr.user_community_map.values():
+        assert community_id == community_id_to_keep
+    assert len(tw_mgr.user_activity) > len(tw_mgr.user_community_map)

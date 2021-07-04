@@ -234,3 +234,47 @@ class TweetsManager():
         sorted_by_influence = sorted(scores, key=lambda t: t[1], reverse=True)
         for i, t in enumerate(sorted_by_influence):
             self.user_activity[t[0]].influence_rank = i + 1 # best rank = 1, not 0
+
+
+    def filter_low_activity_communities(self, unique_tweets_threshold: int) -> None:
+        """Discard communities whose members have not collectively posted the threshold tweets
+        
+        Note: Should be called only after method analyze_graph has been called.
+        """
+        deleted_communities: List[int] = []
+        for community_id in self.community_user_map:
+            comm_activity = self.community_activity_map[community_id]
+            num_retweets = sum(val for val in comm_activity.retweet_counter.values())
+            unique_tweets = comm_activity.num_tweets - num_retweets
+            if unique_tweets < unique_tweets_threshold:
+                # delete the user membership
+                delete_user_ids = self.community_user_map[community_id]
+                for user_id in delete_user_ids:
+                    del self.user_community_map[user_id]
+                
+                # log the community_id
+                deleted_communities.append(community_id)
+
+        deleted_communities = set(deleted_communities)
+        for community_id in deleted_communities:    
+            # delete the community's user list
+            del self.community_user_map[community_id]
+            
+            # delete the community activity
+            del self.community_activity_map[community_id]
+
+        # delete inter-community retweets
+        keys_to_delete = []
+        for ar, cr in self.inter_comm_retweet_counter:
+            if cr[0] in deleted_communities or cr[1] in deleted_communities:
+                keys_to_delete.append((ar, cr))
+        for key in keys_to_delete:
+            del self.inter_comm_retweet_counter[key]
+
+        # delete inter-community replies
+        keys_to_delete = []
+        for ar, cr in self.inter_comm_reply_counter:
+            if cr[0] in deleted_communities or cr[1] in deleted_communities:
+                keys_to_delete.append((ar, cr))
+        for key in keys_to_delete:
+            del self.inter_comm_reply_counter[key]
