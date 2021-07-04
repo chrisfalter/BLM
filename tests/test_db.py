@@ -8,12 +8,14 @@ sys.path.append("tests")
 from typing import Dict
 
 from src.blm_activity_db import BlmActivityDb
+from src.tweet_sentiment import SentimentAnalysis, summarize_sentiment
 from src.tweet_mgr import (
     AccountReply,
     AccountRetweet,
     CommunityActivity, 
     CommunityReply,
     CommunityRetweet,
+    TweetsManager,
     UserActivity
 )
 from tests.test_tweet_mgr import get_communities, get_tw_mgr
@@ -43,28 +45,35 @@ def get_db(get_communities) -> BlmActivityDb:
     return db
 
 
+def sentiment_analyses_are_equal(sa1: SentimentAnalysis, sa2: SentimentAnalysis) -> bool:
+     return sa1.sentiment == sa2.sentiment \
+        and sa1.pronoun_counts == sa2.pronoun_counts \
+        and sa1.emo_scores == sa2.emo_scores
+
 def test_dbUserActivity_isSavedByPeriod(get_db, get_communities):
     db: BlmActivityDb = get_db
-    tw_mgr = get_communities
+    tw_mgr: TweetsManager = get_communities
     user_id = "335972576"
     expected_comm_id = tw_mgr.user_community_map[user_id]
-    actual_comm_id, actual_user_activity = db.user_summary_by_period(user_id, _period)
+    actual_comm_id, actual_activity = db.user_summary_by_period(user_id, _period)
     assert actual_comm_id == expected_comm_id
-    assert actual_user_activity.tweet_count == 2
-    assert actual_user_activity.retweeted_count == 2
-    assert actual_user_activity.replied_to_count == 1
+    assert actual_activity.tweet_count == 2
+    assert actual_activity.retweeted_count == 2
+    assert actual_activity.replied_to_count == 1
 
-    for user_id, expected_user_activity in tw_mgr.user_activity.items():
+    for user_id, expected_activity in tw_mgr.user_activity.items():
         expected_comm_id = tw_mgr.user_community_map[user_id]
-        actual_comm_id, actual_user_activity = db.user_summary_by_period(user_id, _period)
+        actual_comm_id, actual_activity = db.user_summary_by_period(user_id, _period)
         assert actual_comm_id == expected_comm_id
-        assert actual_user_activity.tweet_count == expected_user_activity.tweet_count
-        assert actual_user_activity.retweet_count == expected_user_activity.retweet_count
-        assert actual_user_activity.retweeted_count == expected_user_activity.retweeted_count
-        assert actual_user_activity.reply_count == expected_user_activity.reply_count
-        assert actual_user_activity.replied_to_count == expected_user_activity.replied_to_count
-        assert actual_user_activity.influence == expected_user_activity.influence
-        assert actual_user_activity.influence_rank == expected_user_activity.influence_rank
+        assert actual_activity.tweet_count == expected_activity.tweet_count
+        assert actual_activity.retweet_count == expected_activity.retweet_count
+        assert actual_activity.retweeted_count == expected_activity.retweeted_count
+        assert actual_activity.reply_count == expected_activity.reply_count
+        assert actual_activity.replied_to_count == expected_activity.replied_to_count
+        assert actual_activity.influence == expected_activity.influence
+        assert actual_activity.influence_rank == expected_activity.influence_rank
+        expected_sentiment = summarize_sentiment(expected_activity.sentiment_analyses)
+        assert sentiment_analyses_are_equal(actual_activity.sentiment_summary, expected_sentiment)
 
 
 def test_dbCommunityNumTweets_isAccurate(get_db, get_communities):
@@ -83,12 +92,14 @@ def test_dbCommunitySentimentScores_areAccurate(get_db, get_communities):
     db: BlmActivityDb = get_db
     tw_mgr = get_communities
     community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
-    for community_id in community_activity_map:
-        expected_sentiment = random()
-        db.save_community_sentiment(_period, community_id, expected_sentiment)
+    for community_id, activity in community_activity_map.items():
         comm_summary = db.community_summary(community_id, _period)
-        actual_sentiment = comm_summary.sentiment
-        assert actual_sentiment == expected_sentiment
+        actual_sentiment_all = comm_summary.all_sentiment_summary
+        expected_sentiment_all = summarize_sentiment(activity.all_sentiment_analyses)
+        assert sentiment_analyses_are_equal(actual_sentiment_all, expected_sentiment_all)
+        actual_sentiment_retweets = comm_summary.retweet_sentiment_summary
+        expected_sentiment_retweets = summarize_sentiment(activity.retweet_sentiment_analyses)
+        assert sentiment_analyses_are_equal(actual_sentiment_retweets, expected_sentiment_retweets)
 
 
 def test_dbCommunitySupportsBlmFlags_areAccurate(get_db, get_communities):
@@ -163,5 +174,9 @@ def test_dbCommunitiesSummary_isAccurate(get_db, get_communities):
         actual_activity = actual_map[expected_id]
         assert actual_activity.num_tweets == expected_activity.num_tweets
         assert actual_activity.meme_counter == expected_activity.meme_counter
-        assert actual_activity.retweet_counter == actual_activity.retweet_counter
-        # TODO: test activity.supports_blm and activity.sentiment
+        assert actual_activity.retweet_counter == expected_activity.retweet_counter
+        expected_sa = summarize_sentiment(expected_activity.all_sentiment_analyses)
+        assert sentiment_analyses_are_equal(actual_activity.all_sentiment_summary, expected_sa)
+        expected_sa = summarize_sentiment(expected_activity.retweet_sentiment_analyses)
+        assert sentiment_analyses_are_equal(actual_activity.retweet_sentiment_summary, expected_sa)
+        # TODO: test activity.supports_blm

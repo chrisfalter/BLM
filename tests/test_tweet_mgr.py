@@ -195,8 +195,8 @@ def test_interCommunityReplyCounter_hasCorrectCounts(get_communities):
     # mock data contains one reply from blue to orange
     blue_community_id, orange_community_id = _get_community_ids(get_communities)
     actual = get_communities.inter_comm_reply_counter
-    reply_counter = get_communities.reply_counter
-    assert reply_counter[("247052159", "335972576")] == 1
+    replies = get_communities.replies
+    assert len(replies[("247052159", "335972576")]) == 1
     expected_count = 1
     assert actual[(("247052159", "335972576"), (blue_community_id, orange_community_id))] == expected_count
     expected_count = 0

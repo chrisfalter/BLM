@@ -1,7 +1,10 @@
 import pytest
 
 from src.tweet_sentiment import (
+    EmoScores,
     PronounCounts,
+    SentimentAnalysis,
+    summarize_sentiment,
     _get_emotion_scores,
     _get_pronoun_counts,
     _get_sentiment
@@ -62,4 +65,37 @@ def test_getSentiment_shouldReturnNegative_whenTweetIsSad():
     sentiment = _get_sentiment(tweet)
     assert sentiment < 0.0
     assert sentiment >= -1.0
-    
+
+
+def test_pronounCounts_shouldReturnNormalizedValues_whenGetProportionsCalled():
+    pc = PronounCounts(1, 2, 3, 4)
+    result = pc.get_proportions()
+    assert result == PronounCounts(0.1, 0.2, 0.3, 0.4)
+
+
+def test_pronounCountsGetProportions_shouldReturnZeros_whenNoPronouns():
+    pc = PronounCounts(0, 0, 0, 0)
+    result = pc.get_proportions()
+    assert result == pc
+
+
+def test_summarizeSentiment_shouldNormalizeSummedSentiments_whenGivenList():
+    sa1 = SentimentAnalysis(
+        pronoun_counts=PronounCounts(0, 1, 2, 5),
+        emo_scores=EmoScores(0, 0.25, 0, 0.25, 0, 0.25, 0, 0.25),
+        sentiment=0.4
+    )
+    sa2 = SentimentAnalysis(
+        pronoun_counts=PronounCounts(0, 1, 2, 5),
+        emo_scores=EmoScores(0.25, 0, 0.25, 0, 0.25, 0, 0.25, 0),
+        sentiment=0.2
+    )
+    expected = SentimentAnalysis(
+        pronoun_counts=PronounCounts(0.0, 0.125, 0.25, 0.625),
+        emo_scores=(0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125),
+        sentiment=0.3
+    )
+    actual = summarize_sentiment([sa1, sa2])
+    assert actual.pronoun_counts == expected.pronoun_counts
+    assert actual.emo_scores == expected.emo_scores
+    assert actual.sentiment == pytest.approx(expected.sentiment)
