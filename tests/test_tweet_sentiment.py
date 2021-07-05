@@ -58,6 +58,15 @@ def test_getEmotionScores_returnsZeros_whenTextIsVeryShort():
     assert scores.joy == 0.0
 
 
+def test_getEmotionScores_handlesAnticipationCorrectly():
+    # the affect_frequency dict sometimes uses a key of 'anticip' rather than 'anticipation'
+    # this behavior seems like a bug in NRCLex.
+    text = 'Arrested for hanging a banner. While Darren Wilson still remains free ' \
+        'for killing a Black teen. #BlackLivesMatter http://t.co/de8xpE2v5r'
+    scores = _get_emotion_scores(text)
+    assert scores.anticipation == 0.0
+
+
 def test_getPronounCounts_shouldBeAccurate_whenContractionsUsed():
     counts = _get_pronoun_counts(sample_text)
     assert counts.first_singular == 1

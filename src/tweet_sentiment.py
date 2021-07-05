@@ -126,9 +126,11 @@ def _get_emotion_scores(tweet: str) -> EmoScores:
     )
     if total_emo_frequencies == 0.0:
         return EmoScores()
+    # workaround for apparent bug in NRCLex
+    anticipation_key = "anticipation" if "anticipation" in nrc.affect_frequencies else "anticip"
     scores = EmoScores(
         trust = nrc.affect_frequencies["trust"] / total_emo_frequencies,
-        anticipation = nrc.affect_frequencies["anticipation"] / total_emo_frequencies,
+        anticipation = nrc.affect_frequencies[anticipation_key] / total_emo_frequencies,
         joy = nrc.affect_frequencies["joy"] / total_emo_frequencies,
         surprise = nrc.affect_frequencies["surprise"] / total_emo_frequencies,
         anger = nrc.affect_frequencies["anger"] / total_emo_frequencies,
