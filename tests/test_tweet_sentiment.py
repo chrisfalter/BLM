@@ -45,6 +45,19 @@ def test_getEmotionScores_shouldReturnSomeZeros_whenSomeEmotionsAbsent():
     assert scores.trust > 0.0
 
 
+def test_getEmotionScores_returnsZeros_whenTextIsVeryShort():
+    sample = "Gondwana"
+    scores = _get_emotion_scores(sample)
+    assert scores.trust == 0.0
+    assert scores.anticipation == 0.0
+    assert scores.surprise == 0.0
+    assert scores.sadness == 0.0
+    assert scores.fear == 0.0
+    assert scores.anger == 0.0
+    assert scores.disgust == 0.0
+    assert scores.joy == 0.0
+
+
 def test_getPronounCounts_shouldBeAccurate_whenContractionsUsed():
     counts = _get_pronoun_counts(sample_text)
     assert counts.first_singular == 1
