@@ -1,6 +1,6 @@
 from collections import Counter, defaultdict
 from enum import IntEnum
-from src.tweet_sentiment import EmoScores, PronounCounts, SentimentAnalysis
+from tweet_sentiment import EmoScores, PronounCounts, SentimentAnalysis
 import pandas as pd
 from typing import Dict, Tuple
 
@@ -12,6 +12,7 @@ from tweet_mgr import (
     CommunityReply,
     CommunityRetweet,
     CommunityActivity, 
+    Stance, 
     TweetsManager, 
     UserActivity,
 )
@@ -26,7 +27,7 @@ _community_table = \
 """CREATE TABLE IF NOT EXISTS Community (
     PeriodId INT,
     CommunityId INT,
-    SupportsBlm INT,
+    Stance INT,
     NumTweets INT,
     Sentiment REAL,
     TrustEmo REAL,
@@ -145,7 +146,7 @@ _inter_community_retweet_table = \
     RetweetingCommunityId INT,
     RetweetedCommunityId INT,
     NumRetweets INT,
-    PRIMARY KEY (PeriodId, RetweetingCommunityId, RetweetedCommunityId)
+    PRIMARY KEY (PeriodId, RetweetingAccountId, RetweetedAccountId, RetweetingCommunityId, RetweetedCommunityId)
 ) without RowId"""
 
 _inter_community_reply_table = \
@@ -156,7 +157,7 @@ _inter_community_reply_table = \
     ReplyingCommunityId INT,
     RepliedToCommunityId INT,
     NumRetweets INT,
-    PRIMARY KEY (PeriodId, ReplyingCommunityId, RepliedToCommunityId)
+    PRIMARY KEY (PeriodId, ReplyingAccountId, RepliedToAccountId, ReplyingCommunityId, RepliedToCommunityId)
 ) without RowId"""
 
 class AccountActivity(IntEnum):
@@ -188,7 +189,7 @@ class AccountActivity(IntEnum):
 class Community(IntEnum):
     PeriodId = 0
     CommunityId = 1
-    SupportsBlm = 2
+    Stance = 2
     NumTweets = 3
     Sentiment = 4
     TrustEmo = 5
@@ -283,7 +284,7 @@ class BlmActivityDb():
         with self.conn:
             cur = self.conn.cursor()
             for user_id, user_activity in user_activity_map.items():
-                comm_id = user_community_map[user_id]
+                comm_id = user_community_map.get(user_id)
                 sa = summarize_sentiment(user_activity.sentiment_analyses)
                 params = (
                     user_id,
@@ -318,7 +319,8 @@ class BlmActivityDb():
         retweet_insert = "INSERT into CommunityRetweet Values(?, ?, ?, ?)"
         community_update = \
             "UPDATE Community " \
-            "SET Sentiment = ?, " \
+            "SET Stance = ?, " \
+                "Sentiment = ?, " \
                 "TrustEmo = ?, " \
                 "AnticipationEmo = ?, " \
                 "JoyEmo = ?, " \
@@ -345,6 +347,7 @@ class BlmActivityDb():
                     cur.execute(retweet_insert, params)
                 csa = summarize_sentiment(comm_activity.all_sentiment_analyses)
                 params = (
+                    comm_activity.stance.value,
                     csa.sentiment,
                     csa.emo_scores.trust,
                     csa.emo_scores.anticipation,
@@ -396,11 +399,11 @@ class BlmActivityDb():
                 cur.execute(reply_insert, params)
 
 
-    def save_community_support(self, period_no, community_id, supports_blm):
-        update = "UPDATE Community SET SupportsBlm = ? where PeriodId = ? and CommunityId = ?"
+    def save_community_support(self, period_no: int, community_id: int, stance: Stance):
+        update = "UPDATE Community SET Stance = ? where PeriodId = ? and CommunityId = ?"
         with self.conn:
             cur = self.conn.cursor()
-            cur.execute(update, (supports_blm, period_no, community_id))
+            cur.execute(update, (stance.value, period_no, community_id))
 
 
     def user_summary_by_period(self, user_id: str, period_no: int) -> Tuple[int, UserActivity]:
@@ -447,7 +450,8 @@ class BlmActivityDb():
 
         # community
         community_activity.num_tweets = comm_row[Community.NumTweets]
-        community_activity.supports_blm = comm_row[Community.SupportsBlm]
+        stance = 0 if comm_row[Community.Stance] is None else comm_row[Community.Stance]
+        community_activity.stance = Stance(stance)
         community_activity.all_sentiment_summary = sentiment_analysis_from_row(comm_row, Community.Sentiment)
 
         # memes
@@ -489,11 +493,12 @@ class BlmActivityDb():
         summary = defaultdict(CommunityActivity)
 
         # community
-        id_pos, supports_blm_pos, num_tweets_pos, sentiment_pos = 1, 2, 3, 4
+        id_pos, stance_pos, num_tweets_pos, sentiment_pos = 1, 2, 3, 4
         for row in comm_rows:
             activity = summary[row[id_pos]]
             activity.num_tweets = row[num_tweets_pos] 
-            activity.supports_blm = row[supports_blm_pos]
+            stance = 0 if row[Community.Stance] is None else row[Community.Stance]
+            activity.stance = Stance(stance)
             activity.all_sentiment_summary = sentiment_analysis_from_row(row, sentiment_pos)
 
         # memes

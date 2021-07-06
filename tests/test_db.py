@@ -15,6 +15,7 @@ from src.tweet_mgr import (
     CommunityActivity, 
     CommunityReply,
     CommunityRetweet,
+    Stance,
     TweetsManager,
     UserActivity
 )
@@ -102,17 +103,17 @@ def test_dbCommunitySentimentScores_areAccurate(get_db, get_communities):
         assert sentiment_analyses_are_equal(actual_sentiment_retweets, expected_sentiment_retweets)
 
 
-def test_dbCommunitySupportsBlmFlags_areAccurate(get_db, get_communities):
+def test_dbCommunityStanceFlags_areAccurate(get_db, get_communities):
     """verifies SupportsBLM and Sentiment attributes of Community table"""
     db: BlmActivityDb = get_db
     tw_mgr = get_communities
     community_activity_map: Dict[int, CommunityActivity] = tw_mgr.community_activity_map
     for row_num, community_id in enumerate(community_activity_map):
-        expected_support = row_num < 1
-        db.save_community_support(_period, community_id, expected_support)
+        expected_stance = Stance.CounterProtest if row_num < 1 else Stance.Protest
+        db.save_community_support(_period, community_id, expected_stance)
         comm_summary = db.community_summary(community_id, _period)
-        actual_support = comm_summary.supports_blm
-        assert actual_support == expected_support
+        actual_stance = comm_summary.stance
+        assert actual_stance == expected_stance
 
 
 def test_dbCommunityMemeCounts_areAccurate(get_db, get_communities):
@@ -179,4 +180,4 @@ def test_dbCommunitiesSummary_isAccurate(get_db, get_communities):
         assert sentiment_analyses_are_equal(actual_activity.all_sentiment_summary, expected_sa)
         expected_sa = summarize_sentiment(expected_activity.retweet_sentiment_analyses)
         assert sentiment_analyses_are_equal(actual_activity.retweet_sentiment_summary, expected_sa)
-        # TODO: test activity.supports_blm
+        # TODO: test activity.stance
