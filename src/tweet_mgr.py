@@ -1,4 +1,5 @@
 from collections import Counter, defaultdict
+from enum import IntEnum
 from typing import Dict, List, NamedTuple
 
 import leidenalg as la
@@ -39,17 +40,23 @@ class UserActivity():
         self.sentiment_summary: SentimentAnalysis
 
 
+class Stance(IntEnum):
+    Protest = 1
+    Unknown = 0
+    CounterProtest = -1
+
+
 class CommunityActivity():
 
     def __init__(self):
         self.num_tweets = 0
-        self.supports_blm = False
+        self.stance = Stance.Unknown
         self.retweet_sentiment_analyses: List[SentimentAnalysis] = []
         self.retweet_sentiment_summary: SentimentAnalysis
         self.all_sentiment_analyses: List[SentimentAnalysis] = []
         self.all_sentiment_summary: SentimentAnalysis
         self.meme_counter = Counter() # meme -> count for 
-        self.retweet_counter = Counter() # tweet_id ->count
+        self.retweet_counter = Counter() # tweet_id -> count
 
 
 class AccountRetweet(NamedTuple):
