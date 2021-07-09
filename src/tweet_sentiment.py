@@ -19,6 +19,55 @@ class EmoScores(NamedTuple):
     fear: float = 0.0
     sadness: float = 0.0
 
+    def __mul__(self, o: object):
+        return EmoScores(
+            self.trust * o,
+            self.anticipation * o,
+            self.joy * o,
+            self.surprise * o,
+            self.anger * o,
+            self.disgust * o,
+            self.fear * o,
+            self.sadness * o
+        )
+
+    __rmul__ = __mul__
+
+    def __add__(self, o):
+        return EmoScores(
+            self.trust + o.trust,
+            self.anticipation + o.anticipation,
+            self.joy + o.joy,
+            self.surprise + o.surprise,
+            self.anger + o.anger,
+            self.disgust + o.disgust,
+            self.fear + o.fear,
+            self.sadness + o.sadness
+        )
+
+    def __truediv__(self, o: object):
+        quotient = EmoScores(
+            self.trust / o,
+            self.anticipation / o,
+            self.joy / o,
+            self.surprise / o,
+            self.anger / o,
+            self.disgust / o,
+            self.fear / o,
+            self.sadness / o
+        )
+        return quotient   
+
+    def __eq__(self, o: object) -> bool:
+        return self.trust == o.trust and \
+            self.anticipation == o.anticipation and \
+            self.joy == o.joy and \
+            self.surprise == o.surprise and \
+            self.anger == o.anger and \
+            self.disgust == o.disgust and \
+            self.fear == o.fear and \
+            self.sadness == o.sadness
+
 
 class PronounCounts():
     
@@ -42,7 +91,6 @@ class PronounCounts():
             self.first_plural == o.first_plural and \
             self.second == o.second and \
             self.third == o.third
-
     
     def __truediv__(self, o: object):
         quotient = PronounCounts(
@@ -53,6 +101,15 @@ class PronounCounts():
         )
         return quotient
 
+    def __mul__(self, o: object):
+        return PronounCounts(
+            self.first_singular * o,
+            self.first_plural * o,
+            self.second * o,
+            self.third * o,
+        )
+
+    __rmul__ = __mul__
     
     def get_proportions(self):
         sum = self.first_singular + self.first_plural + self.second + self.third

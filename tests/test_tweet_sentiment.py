@@ -84,6 +84,7 @@ def test_pronounCounts_shouldDoMathOperations():
     assert the_sum / 2 == pc1
     pc1 += pc2
     assert pc1 == PronounCounts(2, 4, 6, 8)
+    assert pc2 * 2 == PronounCounts(2, 4, 6, 8)
 
 
 def test_getSentiment_shouldReturnPositive_whenTweetIsHappy():
@@ -112,6 +113,14 @@ def test_pronounCountsGetProportions_shouldReturnZeros_whenNoPronouns():
     assert result == pc
 
 
+def test_emoScores_shouldPerformMathOps_whenUsedWithMathSyntax():
+    emos = EmoScores(0.2, 0.2, 0.1, 0.1, 0.1, 0.1, 0.1, 0.1)
+    twice_emos = emos * 2
+    assert twice_emos == EmoScores(0.2 * 2, 0.2 * 2, 0.1 * 2, 0.1 * 2, 0.1 * 2, 0.1 * 2, 0.1 * 2, 0.1 * 2)
+    assert twice_emos / 2 == emos
+    assert emos + emos == twice_emos
+
+
 def test_summarizeSentiment_shouldNormalizeSummedSentiments_whenGivenList():
     sa1 = SentimentAnalysis(
         pronoun_counts=PronounCounts(0, 1, 2, 5),
@@ -125,7 +134,7 @@ def test_summarizeSentiment_shouldNormalizeSummedSentiments_whenGivenList():
     )
     expected = SentimentAnalysis(
         pronoun_counts=PronounCounts(0.0, 0.125, 0.25, 0.625),
-        emo_scores=(0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125),
+        emo_scores=EmoScores(0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125, 0.125),
         sentiment=0.3
     )
     actual = summarize_sentiment([sa1, sa2])
