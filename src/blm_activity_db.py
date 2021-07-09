@@ -229,7 +229,7 @@ def sentiment_analysis_from_row(row, sentiment_position: int) -> SentimentAnalys
 
 class BlmActivityDb():
 
-    def __init__(self, connection_string="../data/db/blm.db", initialize_db=False):
+    def __init__(self, connection_string="D:/BLM-db/blm.db", initialize_db=False):
         self.conn = sql.connect(connection_string)
         if initialize_db:
             self._initialize_db()
