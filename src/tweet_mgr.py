@@ -1,5 +1,6 @@
 from collections import Counter, defaultdict
 from enum import IntEnum
+from src.tweet_sentiment import summarize_sentiment
 from typing import Dict, List, NamedTuple
 
 import leidenalg as la
@@ -241,6 +242,11 @@ class TweetsManager():
         sorted_by_influence = sorted(scores, key=lambda t: t[1], reverse=True)
         for i, t in enumerate(sorted_by_influence):
             self.user_activity[t[0]].influence_rank = i + 1 # best rank = 1, not 0
+
+        # summarize sentiment
+        for ca in self.community_activity_map.values():
+            ca.all_sentiment_summary = summarize_sentiment(ca.all_sentiment_analyses)
+            ca.retweet_sentiment_summary = summarize_sentiment(ca.retweet_sentiment_analyses)
 
 
     def filter_low_activity_communities(self, unique_tweets_threshold: int) -> None:

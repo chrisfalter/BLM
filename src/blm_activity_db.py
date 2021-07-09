@@ -345,7 +345,7 @@ class BlmActivityDb():
                 for tweet_id, num_retweets in comm_activity.retweet_counter.items():
                     params = (period_no, community_id, tweet_id, num_retweets)
                     cur.execute(retweet_insert, params)
-                csa = summarize_sentiment(comm_activity.all_sentiment_analyses)
+                csa = comm_activity.all_sentiment_summary
                 params = (
                     comm_activity.stance.value,
                     csa.sentiment,
@@ -365,7 +365,7 @@ class BlmActivityDb():
                     community_id
                 )
                 cur.execute(community_update, params)
-                rsa = summarize_sentiment(comm_activity.retweet_sentiment_analyses)
+                rsa = comm_activity.retweet_sentiment_summary
                 params = (
                     period_no,
                     community_id,
