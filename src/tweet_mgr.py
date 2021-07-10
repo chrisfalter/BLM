@@ -1,6 +1,6 @@
 from collections import Counter, defaultdict
 from enum import IntEnum
-from src.tweet_sentiment import summarize_sentiment
+from tweet_sentiment import summarize_sentiment
 from typing import Dict, List, NamedTuple
 
 import leidenalg as la
