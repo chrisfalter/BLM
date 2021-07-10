@@ -29,12 +29,14 @@ class TransformerBase(BaseEstimator, TransformerMixin):
     def fit(self, X, y=None, **fit_params):
         return self
 
+
 class LowerCaser(TransformerBase):
     
     def transform(self, X, **fit_params):
         for i in range(len(X)):
             X[i] = X[i].lower()
         return X    
+
 
 class Tokenizer(TransformerBase):
 
@@ -45,7 +47,8 @@ class Tokenizer(TransformerBase):
                 if tok.endswith('.') and len(tok) > 1:
                     X[i].remove(tok)
         return X
-    
+
+
 def remove_listed_chars(X, removal_list):
     '''
     Parameters
@@ -61,12 +64,14 @@ def remove_listed_chars(X, removal_list):
                new_doc.append(new_tok)
         X[i] = new_doc
     return X
-    
+
+
 class Stringizer(TransformerBase):
     def transform(self, X, **fit_params):
         for i in range(len(X)):
             X[i] = ' '.join(X[i])
         return X
+
 
 class Lemmatizer(TransformerBase):
     
@@ -90,6 +95,7 @@ class Lemmatizer(TransformerBase):
                     X[i].append(lemmatizer.lemmatize(tok, wordnet_pos))
         return X
 
+
 class PunctuationRemover(TransformerBase):
 
     def __init__(self, exceptions = ''):
@@ -110,6 +116,7 @@ class PunctuationRemover(TransformerBase):
         for parm, value in parameters.items():
             setattr(self, parm, value)
         return self
+
 
 def get_blm_classifier(blm_tweets, counter_tweets):
     text_pipeline = Pipeline([('lower', LowerCaser()),

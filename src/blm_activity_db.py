@@ -234,7 +234,6 @@ class BlmActivityDb():
         if initialize_db:
             self._initialize_db()
 
-
     def _initialize_db(self):
         with self.conn:
             cur = self.conn.cursor()
@@ -249,7 +248,6 @@ class BlmActivityDb():
             cur.execute(_inter_community_retweet_table)
             cur.execute(_inter_community_reply_table)
 
-
     def save_tweets_mgr(self, tw_mgr: TweetsManager, period_no: int):
         self._save_accounts(tw_mgr.user_activity)
         self._save_communities(tw_mgr.community_activity_map, period_no)
@@ -261,14 +259,12 @@ class BlmActivityDb():
             period_no,
         )
 
-
     def _save_accounts(self, user_activity_map):
         account_insert = "INSERT or IGNORE into Account(AccountId) values (?)"
         with self.conn:
             cur = self.conn.cursor()
             for user_id in user_activity_map:
                 cur.execute(account_insert, (user_id,))
-
 
     def _save_communities(self, community_activity_map, period_no):
         community_insert = "INSERT into Community(PeriodId, CommunityId, NumTweets) values (?, ?, ?)"
@@ -277,7 +273,6 @@ class BlmActivityDb():
             for community_id, community_activity in community_activity_map.items():
                 num_tweets = community_activity.num_tweets
                 cur.execute(community_insert, (period_no, community_id, num_tweets))
-
 
     def _save_user_activity(self, user_activity_map: Dict[str, UserActivity], user_community_map, period_no):
         insert = "INSERT into AccountActivity Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
@@ -312,7 +307,6 @@ class BlmActivityDb():
                     sa.pronoun_counts.third,
                 )
                 cur.execute(insert, params)
-
 
     def _save_community_activity(self, comm_activity_map: Dict[int, CommunityActivity], period_no):
         meme_insert = "INSERT into CommunityMeme Values(?, ?, ?, ?)"
@@ -385,7 +379,6 @@ class BlmActivityDb():
                 )
                 cur.execute(retweet_sentiment_insert, params)
 
-
     def _save_inter_community_activity(self, ic_retweets, ic_replies, period_no):
         retweet_insert = "INSERT into InterCommunityRetweet Values(?, ?, ?, ?, ?, ?)"
         reply_insert = "INSERT into InterCommunityReply Values(?, ?, ?, ?, ?, ?)"
@@ -398,13 +391,11 @@ class BlmActivityDb():
                 params = (period_no, ar.replying, ar.replied_to, cr.replying, cr.replied_to, count)
                 cur.execute(reply_insert, params)
 
-
     def save_community_support(self, period_no: int, community_id: int, stance: Stance):
         update = "UPDATE Community SET Stance = ? where PeriodId = ? and CommunityId = ?"
         with self.conn:
             cur = self.conn.cursor()
             cur.execute(update, (stance.value, period_no, community_id))
-
 
     def user_summary_by_period(self, user_id: str, period_no: int) -> Tuple[int, UserActivity]:
         """returns a tuple of community_id, user_activity for a given user in a given period"""
@@ -425,10 +416,8 @@ class BlmActivityDb():
         user_activity.sentiment_summary = sentiment_analysis_from_row(r, AccountActivity.Sentiment)
         return community_id, user_activity
 
-
     def user_summary(self, user_id):
         pass
-
 
     def community_summary(self, community_id: int, period_no: int) -> CommunityActivity:
         community_query = "SELECT * from Community where PeriodId = ? and CommunityId = ?"
@@ -472,7 +461,6 @@ class BlmActivityDb():
         )
 
         return community_activity
-
 
     def communities_summary_by_period(self, period_no: int) -> Dict[int, CommunityActivity]:
         """Returns a map of community_id -> CommunityActivity for the requested period"""
@@ -521,7 +509,6 @@ class BlmActivityDb():
 
         return summary
 
-
     def inter_community_retweet_counts_by_period(self, period_no: int) -> pd.DataFrame:
         """Returns DF of inter-community retweets including account info.
         Note: Columns = RetweetingAcct, RetweetedAcct, RetweetingComm, RetweetedComm, Count"""
@@ -535,7 +522,6 @@ class BlmActivityDb():
             retweet_rows = cur.fetchall()
         cols = ["RetweetingAcct", "RetweetedAcct", "RetweetingComm", "RetweetedComm", "Count"]
         return pd.DataFrame(data=retweet_rows, columns=cols)
-
 
     def inter_community_reply_counts_by_period(self, period_no: int) -> pd.DataFrame:
         """Returns DF of inter-community retweets including account info.
@@ -551,10 +537,8 @@ class BlmActivityDb():
         cols = ["ReplyingAcct", "RepliedToAcct", "ReplyingComm", "RepliedToComm", "Count"]
         return pd.DataFrame(data=reply_rows, columns=cols)
 
-
     def intercomm_account_retweets_by_period(self, period_no: int) -> pd.DataFrame:
         pass
-
 
     def intercomm_account_replies_by_period(self, period_no: int) -> pd.DataFrame:
         """Returns DF of inter-community retweets including account info.
