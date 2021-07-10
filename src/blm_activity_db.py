@@ -2,7 +2,7 @@ from collections import Counter, defaultdict
 from enum import IntEnum
 from tweet_sentiment import EmoScores, PronounCounts, SentimentAnalysis
 import pandas as pd
-from typing import Dict, Tuple
+from typing import Dict, List, Tuple
 
 import sqlite3 as sql
 
@@ -544,3 +544,18 @@ class BlmActivityDb():
         """Returns DF of inter-community retweets including account info.
         Note: Columns = RetweetingAcct, RetweetedAcct, RetweetingComm, RetweetedComm, Count"""
         pass
+
+    def get_account_list(self, start_period:int = 1, end_period:int = 6) ->List[str]:
+        """Returns list of accounts active within period range"""
+        query = "SELECT distinct AccountId " \
+                "FROM AccountActivity " \
+                "WHERE PeriodId >= ? and PeriodId <= ?"
+        params = (start_period, end_period)
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute(query, params)
+            rows = cur.fetchall()
+        acct_list: List[str] = []
+        for row in rows:
+            acct_list.append(row[0])
+        return acct_list

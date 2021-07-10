@@ -22,7 +22,7 @@ from src.tweet_mgr import (
 from tests.test_tweet_mgr import get_communities, get_tw_mgr
 
 
-_period = 0
+_period = 1
 
 
 # These inter-community activity dictionaries are logically inconsistent with individual
@@ -181,3 +181,17 @@ def test_dbCommunitiesSummary_isAccurate(get_db, get_communities):
         expected_sa = summarize_sentiment(expected_activity.retweet_sentiment_analyses)
         assert sentiment_analyses_are_equal(actual_activity.retweet_sentiment_summary, expected_sa)
         # TODO: test activity.stance
+
+
+def test_getAccountList_shouldReturnAllAccounts_whenDefaultsApply(get_db, get_communities):
+    db: BlmActivityDb = get_db
+    tw_mgr = get_communities
+    expected_list = [account for account in tw_mgr.user_activity]
+    actual_list = db.get_account_list()
+    assert set(actual_list) == set(expected_list)
+
+
+def test_getAccountList_shouldReturnEmptyList_whenNoAccountsInPeriodRange(get_db):
+    db: BlmActivityDb = get_db
+    actual_list = db.get_account_list(start_period = _period + 1)
+    assert actual_list == []
