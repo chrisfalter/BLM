@@ -6,6 +6,10 @@ init_report_template = Template('''
 Members: $num_members  
 Tweets: $num_tweets  
 Retweets: $num_retweets  
+Retweeted by other communities: $num_retweets_by_others  
+Replies to other communities: $num_replies  
+Replies from other communities: $num_replied_to  
+Top 10 influence ranks: $top10_influence_ranks  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 $hashtag0 : $hashtag0_percent  

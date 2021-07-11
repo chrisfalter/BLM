@@ -236,10 +236,13 @@ class TweetsManager():
         for i, t in enumerate(sorted_by_influence):
             self.user_activity[t[0]].influence_rank = i + 1 # best rank = 1, not 0
 
-        # summarize sentiment
+        # summarize sentiment for communities and users
         for ca in self.community_activity_map.values():
             ca.all_sentiment_summary = summarize_sentiment(ca.all_sentiment_analyses)
             ca.retweet_sentiment_summary = summarize_sentiment(ca.retweet_sentiment_analyses)
+
+        for ua in self.user_activity.values():
+            ua.sentiment_summary = summarize_sentiment(ua.sentiment_analyses)
 
     def filter_low_activity_communities(self, unique_tweets_threshold: int) -> None:
         """Discard communities whose members have not collectively posted the threshold tweets
