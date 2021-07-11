@@ -96,3 +96,4 @@ Retweet Polarity = -0.378
 | Second | 0.061 | 0.047 |
 | Third | 0.296 | 0.283 |
 
+

@@ -280,7 +280,7 @@ class BlmActivityDb():
             cur = self.conn.cursor()
             for user_id, user_activity in user_activity_map.items():
                 comm_id = user_community_map.get(user_id)
-                sa = summarize_sentiment(user_activity.sentiment_analyses)
+                sa = user_activity.sentiment_summary
                 params = (
                     user_id,
                     period_no,
