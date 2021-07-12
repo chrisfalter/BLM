@@ -1,4 +1,5 @@
 from string import Template
+from typing import List
 
 init_report_template = Template('''
 ## COMMUNITY $community_id
@@ -46,13 +47,23 @@ def generate_init_community_report(
     ht_counts, 
     rts, 
     rt_counts,
+    num_retweets_by_others,
+    num_replies,
+    num_replied_to,
+    top10_influence_ranks: List[int],
 ):
     num_samples = 10
-    subs = {}
-    subs["community_id"] = community_id
-    subs["num_members"] = num_members
-    subs["num_tweets"] = num_tweets
-    subs["num_retweets"] = num_retweets
+    subs = {
+        "community_id": community_id,
+        "num_members": num_members,
+        "num_tweets": num_tweets,
+        "num_retweets": num_retweets,
+        "num_retweets_by_others": num_retweets_by_others,
+        "num_replies": num_replies,
+        "num_replied_to": num_replied_to,
+    }
+    ranks = [str(r) for r in top10_influence_ranks]
+    subs["top10_influence_ranks"] =  ", ".join(ranks)
     for i in range(num_samples):
         if i == len(hashtags) or i == len(rts):
             break
