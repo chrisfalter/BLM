@@ -6,6 +6,10 @@
 Members: 1873  
 Tweets: 9543  
 Retweets: 3835  
+Retweeted by other communities: 2208  
+Replies to other communities: 212  
+Replies from other communities: 182  
+Top 10 influence ranks: 5, 19, 30, 34, 51, 78, 89, 107, 108, 109  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 29.961%  
@@ -37,6 +41,10 @@ solidarity : 01.825%
 Members: 1776  
 Tweets: 7995  
 Retweets: 3471  
+Retweeted by other communities: 1959  
+Replies to other communities: 105  
+Replies from other communities: 99  
+Top 10 influence ranks: 1, 9, 14, 20, 28, 31, 54, 61, 62, 77  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 31.230%  
@@ -68,6 +76,10 @@ michaelbrown : 00.835%
 Members: 1613  
 Tweets: 6583  
 Retweets: 2487  
+Retweeted by other communities: 963  
+Replies to other communities: 99  
+Replies from other communities: 42  
+Top 10 influence ranks: 27, 52, 67, 73, 94, 219, 260, 266, 282, 298  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 35.665%  
@@ -105,6 +117,10 @@ Via @CassandaRules @freakingcat
 Members: 1443  
 Tweets: 3472  
 Retweets: 2130  
+Retweeted by other communities: 663  
+Replies to other communities: 18  
+Replies from other communities: 25  
+Top 10 influence ranks: 6, 33, 48, 79, 90, 155, 157, 177, 278, 296  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 o22 : 17.840%  
@@ -136,6 +152,10 @@ justiceforkj : 01.174%
 Members: 1335  
 Tweets: 4353  
 Retweets: 2081  
+Retweeted by other communities: 1591  
+Replies to other communities: 52  
+Replies from other communities: 68  
+Top 10 influence ranks: 2, 15, 22, 25, 37, 63, 64, 75, 80, 81  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 20.375%  
@@ -167,6 +187,10 @@ ourlivesmatter : 02.307%
 Members: 1144  
 Tweets: 3169  
 Retweets: 1517  
+Retweeted by other communities: 877  
+Replies to other communities: 56  
+Replies from other communities: 31  
+Top 10 influence ranks: 3, 11, 56, 66, 83, 141, 142, 146, 158, 167  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 21.753%  
@@ -200,6 +224,10 @@ Via @ChiLightBrigade
 Members: 1109  
 Tweets: 5317  
 Retweets: 1980  
+Retweeted by other communities: 1111  
+Replies to other communities: 86  
+Replies from other communities: 126  
+Top 10 influence ranks: 7, 35, 41, 44, 50, 72, 124, 132, 136, 144  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 26.313%  
@@ -231,6 +259,10 @@ internet : 01.566%
 Members: 1083  
 Tweets: 5350  
 Retweets: 1718  
+Retweeted by other communities: 861  
+Replies to other communities: 83  
+Replies from other communities: 60  
+Top 10 influence ranks: 45, 69, 70, 86, 103, 118, 129, 184, 187, 198  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 46.333%  
@@ -262,6 +294,10 @@ occupyslu : 01.863%
 Members: 983  
 Tweets: 2413  
 Retweets: 1293  
+Retweeted by other communities: 572  
+Replies to other communities: 26  
+Replies from other communities: 22  
+Top 10 influence ranks: 12, 26, 68, 220, 341, 347, 357, 388, 435, 544  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 36.350%  
@@ -293,6 +329,10 @@ justiceformikebrown : 01.779%
 Members: 927  
 Tweets: 3114  
 Retweets: 1761  
+Retweeted by other communities: 435  
+Replies to other communities: 11  
+Replies from other communities: 31  
+Top 10 influence ranks: 4, 8, 16, 23, 32, 38, 55, 59, 91, 140  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 bbw13 : 24.872%  
@@ -324,6 +364,10 @@ normalize : 01.760%
 Members: 821  
 Tweets: 3022  
 Retweets: 1181  
+Retweeted by other communities: 817  
+Replies to other communities: 26  
+Replies from other communities: 46  
+Top 10 influence ranks: 17, 18, 74, 106, 159, 246, 286, 300, 304, 308  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 32.007%  
@@ -365,6 +409,10 @@ We must do that ourselves.
 Members: 754  
 Tweets: 1497  
 Retweets: 889  
+Retweeted by other communities: 305  
+Replies to other communities: 14  
+Replies from other communities: 23  
+Top 10 influence ranks: 21, 96, 100, 101, 212, 326, 335, 403, 472, 498  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 05.624%  
@@ -396,6 +444,10 @@ remembermalcolmx : 01.800%
 Members: 606  
 Tweets: 1506  
 Retweets: 845  
+Retweeted by other communities: 24  
+Replies to other communities: 31  
+Replies from other communities: 55  
+Top 10 influence ranks: 29, 410, 425, 446, 585, 641, 710, 771, 776, 790  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 76.923%  
@@ -428,6 +480,10 @@ handsupdontshoot : 00.947%
 Members: 590  
 Tweets: 1532  
 Retweets: 763  
+Retweeted by other communities: 436  
+Replies to other communities: 18  
+Replies from other communities: 24  
+Top 10 influence ranks: 24, 40, 58, 76, 102, 105, 180, 231, 238, 273  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 30.013%  
@@ -459,6 +515,10 @@ justiceforericgarner : 04.194%
 Members: 575  
 Tweets: 1426  
 Retweets: 677  
+Retweeted by other communities: 514  
+Replies to other communities: 11  
+Replies from other communities: 15  
+Top 10 influence ranks: 10, 13, 49, 65, 117, 148, 195, 217, 229, 241  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 fergusonoctober : 62.629%  
@@ -490,6 +550,10 @@ anon : 01.625%
 Members: 494  
 Tweets: 1517  
 Retweets: 650  
+Retweeted by other communities: 343  
+Replies to other communities: 18  
+Replies from other communities: 14  
+Top 10 influence ranks: 53, 98, 163, 173, 235, 287, 411, 450, 489, 501  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 fergusonoctober : 53.385%  
@@ -521,6 +585,10 @@ stl : 02.308%
 Members: 467  
 Tweets: 1302  
 Retweets: 642  
+Retweeted by other communities: 353  
+Replies to other communities: 16  
+Replies from other communities: 5  
+Top 10 influence ranks: 85, 99, 123, 127, 138, 206, 210, 280, 324, 358  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 fergusonoctober : 40.187%  
@@ -556,6 +624,10 @@ handsupunited : 02.960%
 Members: 399  
 Tweets: 724  
 Retweets: 417  
+Retweeted by other communities: 134  
+Replies to other communities: 4  
+Replies from other communities: 26  
+Top 10 influence ranks: 114, 135, 188, 251, 262, 313, 719, 1130, 1599, 1679  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 26.379%  
@@ -587,6 +659,10 @@ ripmaryspears : 02.158%
 Members: 393  
 Tweets: 554  
 Retweets: 398  
+Retweeted by other communities: 74  
+Replies to other communities: 5  
+Replies from other communities: 8  
+Top 10 influence ranks: 36, 522, 787, 841, 1082, 1214, 1292, 1327, 1508, 1520  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 mikebrown : 82.915%  
@@ -618,6 +694,10 @@ burdenbm : 00.754%
 Members: 384  
 Tweets: 1108  
 Retweets: 567  
+Retweeted by other communities: 148  
+Replies to other communities: 7  
+Replies from other communities: 13  
+Top 10 influence ranks: 110, 111, 354, 462, 551, 626, 721, 726, 778, 889  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 43.563%  
@@ -649,6 +729,10 @@ gov : 01.235%
 Members: 359  
 Tweets: 656  
 Retweets: 380  
+Retweeted by other communities: 103  
+Replies to other communities: 6  
+Replies from other communities: 4  
+Top 10 influence ranks: 57, 265, 500, 531, 680, 702, 773, 959, 1224, 1312  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 71.316%  
@@ -680,6 +764,10 @@ justice4mikebrown : 00.789%
 Members: 355  
 Tweets: 568  
 Retweets: 356  
+Retweeted by other communities: 76  
+Replies to other communities: 2  
+Replies from other communities: 13  
+Top 10 influence ranks: 42, 471, 806, 972, 1111, 2176, 2222, 2300, 2427, 3443  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 87.921%  
@@ -714,6 +802,10 @@ http://t.co/5AEggutXiw
 Members: 350  
 Tweets: 563  
 Retweets: 354  
+Retweeted by other communities: 81  
+Replies to other communities: 2  
+Replies from other communities: 3  
+Top 10 influence ranks: 47, 227, 268, 540, 621, 1228, 1321, 1639, 1753, 1876  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 charlessmith : 68.079%  
@@ -745,6 +837,10 @@ socialjustice : 02.260%
 Members: 338  
 Tweets: 503  
 Retweets: 347  
+Retweeted by other communities: 85  
+Replies to other communities: 5  
+Replies from other communities: 6  
+Top 10 influence ranks: 39, 869, 875, 991, 1226, 1274, 1311, 1497, 1631, 1745  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 64.553%  
@@ -782,6 +878,10 @@ The time has made itself undeniable. Ready or not.
 Members: 334  
 Tweets: 651  
 Retweets: 382  
+Retweeted by other communities: 126  
+Replies to other communities: 6  
+Replies from other communities: 14  
+Top 10 influence ranks: 46, 122, 237, 406, 434, 443, 454, 483, 782, 831  
 
 ### Top Hashtags (by percentage inclusion in retweets)
 ferguson : 29.843%  
@@ -813,4 +913,553 @@ Via @alexisBalderon1 @patticar
 03.665% : Asian solidarity with #Ferguson #BlackLivesMatter 🙌💛💙 http://t.co/jg8TbebgUD  
 02.880% : Why we must build both a multi-racial &amp; a Black movement for justice. via @rinkuwrites http://t.co/iRFy9oWUPz #BlackLivesMatter #DWDignity  
 02.618% : Beautiful.  MT @caaav: #blacklivesmatter http://t.co/oQO1vfwBnG  
+
+
+## COMMUNITY 25
+
+Members: 333  
+Tweets: 947  
+Retweets: 390  
+Retweeted by other communities: 106  
+Replies to other communities: 13  
+Replies from other communities: 22  
+Top 10 influence ranks: 145, 334, 345, 367, 369, 445, 480, 482, 583, 592  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 28.205%  
+mikebrown : 12.564%  
+nojusticenosleep : 10.513%  
+husl : 05.641%  
+disabledlivesmatter : 05.128%  
+blackboysmatter : 04.872%  
+fergusonoctober : 04.615%  
+justiceformikebrown : 04.359%  
+toomanytoname : 04.103%  
+michaelbrown : 03.590%  
+
+### Top Retweets (by percentage inclusion in retweets)
+03.077% : when is enough, enough? #BlackLivesMatter #NoJusticeNoSleep  
+02.564% : #BlackLivesMatter is not a trend, it's a fact.  
+02.308% : No matter what, we must remember that we are all human. #BlackLivesMatter #Ferguson #MikeBrown http://t.co/Dp35jQeK8h http://t.co/tpZQUDy1uu  
+02.051% : Police won't release name of the officer who killed #MichaelBrown bc they fear for his life.
+Hideous irony in #Ferguson. 
+#BlackLivesMatter  
+02.051% : @NatCounDis ADVOCATES: Follow, use &amp; tell all about #BlackLivesMatter
+#DisabledLivesMatter #BlackDisabledLivesMatter #DisabilitySolidarity  
+02.051% : They're "bringing it" back tonight at #HUSL @attorneycrump, @AfricanaCarr &amp; other powerful voices. #BlackLivesMatter http://t.co/eWojylUXml  
+01.795% : Stop Killing Us.
+
+#BlackLivesMatter
+#BlackGirlsLivesMatter
+#DeafLivesMatter
+#DisabledLivesMatter
+#TransLivesMatter
+
+#DisabilitySolidarity  
+01.795% : 'Black Trans* Women's Lives Matter' To Hold Vigil in D.C. #blacklivesmatter #stoptransmurders http://t.co/dAVOpt9SBf  
+01.795% : Two months since #MikeBrown was executed http://t.co/n5L8UHWGnV #NeverForget #JusticeForMikeBrown #TooManyToName #BlackLivesMatter  
+01.795% : #BlackLivesMatter #BlackLivesMatter #BlackLivesMatter #BlackLivesMatter #BlackLivesMatter #BlackLivesMatter #BlackLivesMatter  
+
+
+## COMMUNITY 26
+
+Members: 323  
+Tweets: 848  
+Retweets: 396  
+Retweeted by other communities: 140  
+Replies to other communities: 4  
+Replies from other communities: 7  
+Top 10 influence ranks: 133, 328, 376, 512, 516, 521, 667, 691, 727, 731  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 23.485%  
+fergusonoctober : 09.848%  
+bambnf : 09.091%  
+missing64k : 09.091%  
+blackwomenmatter : 07.323%  
+justicefortrayvon : 04.545%  
+hoodiesup : 04.545%  
+p2 : 04.040%  
+vawoc : 03.030%  
+1uferguson : 02.273%  
+
+### Top Retweets (by percentage inclusion in retweets)
+08.081% : This community has been under siege for a month because they dare to protest the murder of one of their kids. #ferguson #blacklivesmatter  
+04.545% : Trayvon Martin was killed two years ago today. #JusticeForTrayvon #HoodiesUp #BlackLivesMatter http://t.co/HkXE4BL4ZD  
+04.040% : .@CornelWest arrested in #Ferguson http://t.co/pMYb4OhWYw via @elonjames #BlackLivesMatter #FergusonOctober #p2  
+03.788% : Important read, for white doofuses such as myself who want to help respectfully. #blacklivesmatter http://t.co/CaQpg2dDSU  
+03.535% : Does your theology help people to realize that #BlackLivesMatter ?  
+03.283% : Hard to fathom the things happening right before the world's eyes, on camera, televised, yet many still refuse to see it. #BlackLivesMatter  
+03.283% : "As Ferguson chants #blacklivesmatter, it’s time to decide if we believe it’s true."
+Read more at http://t.co/4qgmJ8AT5c  
+02.273% : The sign says it all. http://t.co/imDSrHHctQ #BlackLivesMatter #FergusonOctober #1uFerguson http://t.co/kxcQ8GmCQ4  
+02.273% : Utah Police Admit They 'Shot Darrien Hunt in the Back' http://t.co/KFRXusLSuK #DarrienHunt #Utah #blacklivesmatter #PoliceShooting  
+02.273% : All of them. Every last one. No exceptions. #BlackLivesMatter  
+
+
+## COMMUNITY 27
+
+Members: 323  
+Tweets: 619  
+Retweets: 340  
+Retweeted by other communities: 84  
+Replies to other communities: 13  
+Replies from other communities: 19  
+Top 10 influence ranks: 43, 275, 315, 348, 1366, 1438, 1550, 1844, 1855, 1924  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 39.706%  
+newsonenow : 23.235%  
+spiritofemmetttill : 14.118%  
+ezellford : 06.176%  
+johncrawford : 06.176%  
+mikebrown : 04.412%  
+justiceformikebrown : 01.765%  
+handsup : 01.765%  
+peaceinthestreets : 01.471%  
+handsupdontshoot : 01.176%  
+
+### Top Retweets (by percentage inclusion in retweets)
+32.941% : The WORLD is watching!!! Support for #Ferguson is universal (photo from @HazeyKilla) #BlackLivesMatter http://t.co/0K7VkCW5SH  
+12.059% : When white people imply that Michael Brown deserved to die because he was some sort of thug, I can't de-friend fast enough.#Blacklivesmatter  
+08.529% : @Iam360WISE #SpiritofEmmettTill demands justice4ALL victims of racism! #BlackLivesMatter http://t.co/WIHY48ORJZ http://t.co/F6EYLalaaJ  
+08.529% : All of these Black men were murdered by police http://t.co/mLkZEIU7yW #BlackLivesMatter @tvonetv #NewsOneNow  
+06.176% : .@newsone: #NewsOneNow looks at the police shooting deaths of #EzellFord and #JohnCrawford. http://t.co/Nrjqvh23eC #BlackLivesMatter  
+05.000% : All of these Black men were murdered by police  #BlackLivesMatter @tvonetv #NewsOneNow http://t.co/vVFBt8H3vK  
+03.529% : All of these Black men were murdered by police #BlackLivesMatter @tvonetv #NewsOneNow http://t.co/vqaZETdZht  
+02.647% : @attorneycrump #SpiritofEmmettTill demands justice 4 all victims of racism #BlackLivesMatter http://t.co/Xn5YjCHPkq http://t.co/Md8sfFQ9h9  
+01.176% : #Ferguson #ATLRally #Atlanta #MikeBrown #BlackLivesMatter #StandDownForWhat #ATLPolice ##APD http://t.co/ZKdUor6JS7  
+01.176% : TAKE OVER: #MikeBrown protesters SHUT DOWN Atlanta highway! It's a blessing nobody got KILLED #BlackLivesMatter http://t.co/iA1leajZQQ  
+
+
+## COMMUNITY 28
+
+Members: 318  
+Tweets: 1087  
+Retweets: 438  
+Retweeted by other communities: 234  
+Replies to other communities: 19  
+Replies from other communities: 15  
+Top 10 influence ranks: 104, 120, 153, 190, 297, 330, 332, 356, 361, 384  
+
+### Top Hashtags (by percentage inclusion in retweets)
+fergusonoctober : 42.009%  
+ferguson : 34.932%  
+killedbycops : 07.534%  
+16times : 04.110%  
+stl : 03.881%  
+justiceformikebrown : 03.653%  
+solidarity : 03.425%  
+moralmonday : 02.283%  
+mikebrown : 02.055%  
+bellhookstns : 02.055%  
+
+### Top Retweets (by percentage inclusion in retweets)
+07.534% : .@ColorOfChange just launched @KilledByCops. It will tweet in memory of one Black person #killedbycops every hour cuz #BlackLivesMatter  
+07.306% : If we r to stand 4 true justice we must stand for others, not just our own. It's JUSTICE, never JUST-US. #FergusonOctober #BlackLivesMatter  
+04.795% : #Ferguson is crazy #blacklivesmatter  
+03.881% : I am sick sick sick sick SICK of this shit. SICK OF IT. #stl #16times #Ferguson #BlackLivesMatter WHY WE GOTTA KEEP SAYING THIS SHIT?  
+02.968% : Just landed. I am here in #Ferguson because I believe my liberation is bound together w/ theirs. #FergusonOctober #BlackLivesMatter  
+02.740% : The FIVE demands. #BlackLivesMatter #FergusonOctober #Ferguson http://t.co/SMa3bWpgj2  
+02.511% : Wall of memory, faces of lives taken at Hands Up,Don't Shoot office #BlackLivesMatter #FergusonOctober @ColorOfChange http://t.co/gm7IRhKCSZ  
+02.283% : Dear GOD, there has to be a place that a Black person is valuable other than in Heaven. Hear our cries.
+#BlackLivesMatter #Ferguson  
+01.370% : Everyone praising Hilary Clinton on her #Ferguson comments - really?!? How long does it take to tell us racism exists and #BlackLivesMatter?  
+01.370% : 28 year old unarmed man killed by NYPD yesterday. WTF?! "I shot him by accident." http://t.co/7WgbuB87j1 #BlackLivesMatter  
+
+
+## COMMUNITY 29
+
+Members: 303  
+Tweets: 538  
+Retweets: 309  
+Retweeted by other communities: 98  
+Replies to other communities: 5  
+Replies from other communities: 8  
+Top 10 influence ranks: 60, 281, 661, 965, 1245, 1271, 1518, 1645, 1672, 1723  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 72.168%  
+johncrawford : 01.942%  
+mikebrown : 01.618%  
+repost : 00.971%  
+occupyferguson : 00.647%  
+fergusonriot : 00.647%  
+handsup : 00.324%  
+handsupdontshoot : 00.324%  
+solidarity : 00.324%  
+stoppolicebrutality : 00.324%  
+
+### Top Retweets (by percentage inclusion in retweets)
+62.460% : Art pieces supporting #Ferguson popping up in parks across the world. #BlackLivesMatter http://t.co/EftfmIYKd9  
+10.356% : I have a feeling George Zimmerman will serve more time for threatening a white woman than for killing a black child. #BlackLivesMatter  
+05.502% : Jesus! Ain't that it! #Ferguson #BlackLivesMatter  http://t.co/SQUUxJaXm8  
+02.589% : A8: @GovJayNixon needs to know that #BlackLivesMatter. Stop trying to cover up what happened and focus on accountability #BlerdChat  
+02.265% : If you care more about a symphony or a sport being "interrupted" than you do about a murdered teen, you are the problem. #BlackLivesMatter  
+01.942% : No Indictment for Officers Involved in John Crawford’s Killing at Walmart http://t.co/np3yqaMj5R #JohnCrawford #BlackLivesMatter  
+01.294% : #blacklivesmatter  
+01.294% : Hey America, Darren Wilson is still free incase anyone forgot. #Ferguson #BlackLivesMatter  
+00.971% : Freedom from police violence is reproductive justice. #repost @theshanellem #mikebrown #blacklivesmatter http://t.co/MGU5wfwtev  
+00.971% : #BlackLivesMatter  
+
+
+## COMMUNITY 30
+
+Members: 298  
+Tweets: 688  
+Retweets: 322  
+Retweeted by other communities: 142  
+Replies to other communities: 10  
+Replies from other communities: 17  
+Top 10 influence ranks: 156, 243, 269, 290, 408, 559, 634, 688, 780, 827  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 36.025%  
+mikebrown : 24.224%  
+handsup : 13.665%  
+handsupdontshoot : 11.180%  
+fergusonoctober : 10.248%  
+onevoice : 06.832%  
+solidaritynow : 06.832%  
+occupyferguson : 06.832%  
+fegusonoctober : 06.522%  
+iof : 05.590%  
+
+### Top Retweets (by percentage inclusion in retweets)
+06.832% : Because our children deserve better.  #OneVoice #SolidarityNow #BlackLivesMatter #OccupyFerguson  
+06.522% : NOW:Hundreds at #Ferguson police station #BlackLivesMatter via @Federal_flashes | Livestream: http://t.co/fRBPwLULUE http://t.co/v7Ctu5DLjG  
+05.590% : #IOF attacked us with stun grenades injured a girl in the head #On2Jerusalem #BlackLivesMatter http://t.co/yZT8bwA6aF  
+05.590% : Rt @abbysmardon: Justice for #MikeBrown rally shutting down U Street in #DC #HandsUpDontShoot #BlackLivesMatter http://t.co/FkPaZ9ZtNA  
+04.969% : #HandsUpWalkOut Students Honor #MikeBrown Today #Ferguson | http://t.co/6Klkh1wP6M #blacklivesmatter Photo Amy Rose http://t.co/VzuXMnRHVc  
+04.658% : Why is #FegusonOctober &amp; the #HandsUp moment occurring? Because #BlackLivesMatter as illustrated by @CassandraRules http://t.co/q2bEkFf46C.  
+04.348% : #Atlanta Rally for #MikeBrown of #Ferguson on Aug 28th. #HandsUp #BlackLivesMatter http://t.co/y9IGb71DKg  
+04.037% : #FergusonOctober #HandsupDontShoot https://t.co/B7lkhmaZDC #BlackLivesMatter EVERYWHERE.  "#Palestine2Ferguson we do this for #MikeBrown"  
+03.727% : RT @norarahimian: #BlackLivesMatter #HandsUpLA #EzellFord #MikeBrown http://t.co/TKZweZHfvo  
+03.727% : #BlackLivesMatter #Ferguson http://t.co/EGMhxf7Ow1  
+
+
+## COMMUNITY 31
+
+Members: 297  
+Tweets: 1048  
+Retweets: 407  
+Retweeted by other communities: 138  
+Replies to other communities: 5  
+Replies from other communities: 7  
+Top 10 influence ranks: 112, 172, 178, 259, 307, 397, 448, 518, 673, 728  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 26.290%  
+handsupfriday : 22.359%  
+handsupdontshoot : 21.867%  
+blacktwitter : 13.022%  
+solidarity : 08.845%  
+jordandavis : 07.862%  
+standyourground : 07.862%  
+fergusonshooting : 04.668%  
+whiteprivilege : 04.668%  
+justiceformikebrown : 04.177%  
+
+### Top Retweets (by percentage inclusion in retweets)
+08.845% : #HandsUpFriday #blacklivesmatter #Ferguson #HandsUpDontShoot #solidarity @Awkward_Duck http://t.co/gPx6cnPBrY  
+07.862% : "The Talk" #JordanDavis #BlackLivesMatter #StandYourGround http://t.co/BDcBml01Zs  
+04.668% : VeryTrue #BlackLivesMatter #FergusonShooting #whiteprivilege http://t.co/8udBXHboP7  
+02.948% : I am not Suspicious by James C Lewis #BlackLivesMatter #photography http://t.co/JoLUE2oDjA  
+02.211% : #HandsUpFriday #HandsUpDontShoot #BlackLivesMatter http://t.co/ep4QnB7OfQ  
+02.211% : Why #Twitter beats #Facebook for #breakingnews http://t.co/14RQe5KbIo #BlackTwitter #BlackLivesMatter #Ferguson #News http://t.co/OGlkybWW9S  
+02.211% : #Ferguson #MikeBrown #JohnCrawford #AiyanaJones #TooManyNames #BlackLivesMatter http://t.co/b8FHyv7fD3  
+02.211% : Why Trade the Trade? I honor my ancestors. #BlackTwitter #BlackLivesMatter… http://t.co/lg104wRP4y http://t.co/LWOv1zj8B3  
+02.211% : St. Louis/Ferguson police = a stain on America's conscience &amp; a symbol of the structural inequalities that still plague us #blacklivesmatter  
+01.966% : In East Contra Costa County. #HandsUpDontShoot #HandsUpFriday #BlackLivesMatter http://t.co/1VNFxgSF8B  
+
+
+## COMMUNITY 32
+
+Members: 291  
+Tweets: 583  
+Retweets: 316  
+Retweeted by other communities: 90  
+Replies to other communities: 3  
+Replies from other communities: 13  
+Top 10 influence ranks: 71, 196, 218, 632, 658, 716, 747, 772, 893, 1153  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 62.975%  
+stlouis : 29.747%  
+fergusonoctober : 21.519%  
+moralmonday : 16.139%  
+homecomingblackout : 06.962%  
+occupyslu : 04.430%  
+shaw : 04.114%  
+nmos14 : 03.481%  
+chicago : 02.848%  
+michaelbrown : 02.532%  
+
+### Top Retweets (by percentage inclusion in retweets)
+19.620% : .@AntonioFrench #Ferguson youth leading neighborhood clean-up NOW at 6621 W. Florrisant Ave, #StLouis 63136 #BlackLivesMatter #MikeBrown  
+16.139% : Detroit is here in the streets of #Ferguson &amp; in solidarity for #MoralMonday  #BlackLivesMatter  #FergusonOctober http://t.co/AvhrNOlfTJ  
+06.013% : RT @thecrisismag: #Ferguson The media's double standards.... Cartoon by Matt Bors via @truthout #BlackLivesMatter http://t.co/cXimDr1kRO  
+05.380% : The WORLD is watching!!! Support for #Ferguson is universal (photo from @HazeyKilla) #BlackLivesMatter http://t.co/MfFbqUbDjC  
+04.114% : Beautiful. Keep striving STL #FergusonOctober #Shaw #OccupySLU #BlackLivesMatter ✊❤️ http://t.co/WuWiOpu49p  
+03.797% : .@Dreamdefenders #Ferguson youth leading neighborhood clean-up NOW at 6621 W. Florrisant Ave, #StLouis 63136 #BlackLivesMatter  
+02.532% : if you were verbally criticizing #HomecomingBlackout today you are part of the problem. stop state-sanctioned genocide. #BlackLivesMatter  
+02.215% : #BlackLivesMatter #MichaelBrown #RenishaMcBride #JordanDavis #TrayvonMartin #EricGarner #MarlenePinnock http://t.co/4KSShXtUye  
+01.899% : #BlackLivesMatter  
+01.899% : Police treat black and brown bodies like dirt then get called heroes. #justiceformahivist #nativelivesmatter #BlackLivesMatter  
+
+
+## COMMUNITY 33
+
+Members: 283  
+Tweets: 955  
+Retweets: 348  
+Retweeted by other communities: 106  
+Replies to other communities: 7  
+Replies from other communities: 12  
+Top 10 influence ranks: 164, 175, 191, 390, 598, 619, 630, 709, 821, 890  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 34.195%  
+blacklove : 21.264%  
+blackexcellence : 20.690%  
+ericgarner : 06.322%  
+alexnieto : 06.034%  
+mikebrown : 05.460%  
+brownlivesmatter : 04.598%  
+nmos14 : 04.598%  
+oakland : 03.448%  
+bart : 03.448%  
+
+### Top Retweets (by percentage inclusion in retweets)
+21.839% : Thousands marching to Canfield Apts with the Brown family in #Ferguson #BlackLivesMatter Beautiful! http://t.co/PbqiiZs9k5  
+04.598% : This was my view as an organizer at #NMOS14. AMAZING. JUST AMAZING. #BlackLivesMatter http://t.co/o8pYMQM8nz  
+03.448% : West #Oakland #BART: #EricGarner #AlanBlueford #AlexNieto #MikeBrown #BlackLivesMatter #BrownLivesMatter #Ferguson http://t.co/bjYKnYOM3s  
+02.874% : RT @KayCWise: Just saw the #EricGarner video. Sick to my damn stomach. We can never trust you when you don't believe that #BlackLivesMatter  
+02.586% : Spotted in Oakland - 2/3 billboards claimed by the people: T. Martin - "Trayvon should walk free." #blacklivesmatter http://t.co/ksusc7QTOP  
+02.586% : Spotted in Oakland - 1/3 billboards claimed by the people: Emmett Till - "Lynching is not over." #blacklivesmatter http://t.co/7YfAxi9sO7  
+02.586% : #Map released, death by #SFPD, http://t.co/EIRhcDOsVB #BlackLivesMatter #Ferguson #AlexNieto @jaeahjlee @ACLU_NorCal http://t.co/KknU5fZbjV  
+01.724% : Frederick Douglass, Carter Woodson, J.A. Rogers, Langston Hughes, Zora Neale Hurston, James Weldon Johnson, Marcus Garvey. #BlackLivesMatter  
+01.724% : Unarmed Black Man, Ezell Ford, Shot by Police in LA   http://t.co/vRYphx4zt4 via @TheRoot This epidemic must end. #BlackLivesMatter  
+01.437% : #BlackLivesMatter #BaltimoreForFerguson  
+
+
+## COMMUNITY 34
+
+Members: 275  
+Tweets: 1492  
+Retweets: 369  
+Retweeted by other communities: 138  
+Replies to other communities: 79  
+Replies from other communities: 6  
+Top 10 influence ranks: 82, 128, 139, 200, 211, 224, 372, 404, 479, 562  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 35.501%  
+ferguson2louisville : 20.054%  
+nmos14 : 19.512%  
+louisville : 19.512%  
+camuplmpd : 16.260%  
+justiceformikebrown : 15.176%  
+dontshoot : 13.279%  
+handsup : 13.008%  
+louisville2ferugson : 06.775%  
+blackmen : 04.336%  
+
+### Top Retweets (by percentage inclusion in retweets)
+07.317% : #HandsUp #DontShoot #blacklivesmatter #JusticeforMikeBrown #NMOS14 #Louisville @justjerdi http://t.co/qJagWeAooW  
+05.691% : RT @tgtweets1: #HandsUp #DontShoot #blacklivesmatter #JusticeforMikeBrown #NMOS14 #Louisville @justjerdi http://t.co/xsIpht9XYC  
+04.065% : Occupied Oxmoor Mall in Louisville yesterday! #Ferguson2Louisville #BlackLivesMatter #ShutItDown #Ferguson @deray http://t.co/r9sUzqWAAr  
+04.065% : When we say that #BlackLivesMatter, it doesn't just mean the lives of unarmed Black males being murdered by racist cops. 
+#MarySpears  
+03.794% : Countless unnamed young people have sacrificed so much for the struggle on #Ferguson Can't we love and appreciate them? #BlackLivesMatter  
+02.981% : Another death of a Black man, this time here in #CA I know our cops have a tough job but #BlackLivesMatter https://t.co/5Z16pgonNp  
+02.710% : Lance Newman spitting poems"Black Dangerous" &amp; "Light" at the @Starbucks kiosk #Louisville2Ferugson #BlackLivesMatter http://t.co/DYLx5fMlwa  
+02.439% : Columbia Heights stands with #Ferguson. #BlackLivesMatter #DCcares http://t.co/PeEEQIcuMt  
+02.168% : Oxmoor security telling protestors they must leave. #BlackLivesMatter #Louisville2Ferugson #MichaelBrown http://t.co/WI1TDz0AAR  
+02.168% : Before we were asked to leave we got out point across. #BlackLivesMatter #Ferguson2Louisville #CamupLmpd http://t.co/xLgCJvxNKl  
+
+
+## COMMUNITY 35
+
+Members: 237  
+Tweets: 481  
+Retweets: 261  
+Retweeted by other communities: 62  
+Replies to other communities: 4  
+Replies from other communities: 5  
+Top 10 influence ranks: 150, 245, 292, 737, 966, 979, 999, 1050, 1092, 1107  
+
+### Top Hashtags (by percentage inclusion in retweets)
+mikebrown : 25.670%  
+ferguson : 21.073%  
+jobsnotjails : 09.579%  
+ezellford : 04.215%  
+handsupla : 03.831%  
+notoracism : 03.065%  
+handsupdontshoot : 02.682%  
+handsupfriday : 01.916%  
+nmos14 : 01.533%  
+michaelbrown : 01.533%  
+
+### Top Retweets (by percentage inclusion in retweets)
+20.307% : Next Seattle protest of #MikeBrown shooting: Sat 4:00pm Westlake. Rebuild the Civil Rights movement #BlackLivesMatter http://t.co/uC825aRf88  
+15.326% : Trayvon Martin’s Mother Calls Out America - unconvinced America is dedicated to fighting racism http://t.co/s5VUuIvQVn #blacklivesmatter  
+09.579% : #JobsNotJails #BlackLivesMatter Yesterday I cast the sole no vote on the development of a new youth jail in Seattle: http://t.co/vpujh4XcSO  
+07.663% : Missouri Governor declares State of Emergency prior to #Ferguson Grand Jury decision:
+ http://t.co/8Tf40qXdXp
+#BlackLivesMatter #MikeBrown  
+05.747% : "Racism is a fundamental part of capitalism." @cmkshama on #Ferguson &amp; the need to build a political alternative #BlackLivesMatter  
+04.215% : #BlackLivesMatter: A Tribute to Black Men Killed By Police http://t.co/BD95cnYwAX  
+03.448% : Love this “@norarahimian: #BlackLivesMatter #HandsUpLA #EzellFord #MikeBrown http://t.co/pAvnoY4kOt  
+03.065% : more &amp; more people still showing up for #Ferguson #NoToRacism #BlackLivesMatter National March, join the passionate peaceful protest  
+03.065% : In Case You Missed It - #BlackLivesMatter: A Tribute to Black Men Killed By Police http://t.co/PcjkwMQnDN cc .@AGuyNamedPharoh  
+02.682% : RT @MrReevesMDIV We are out marching for #Justice #MikeBrown #Ferguson #BlackLivesMatter http://t.co/yKE99qjdaY  
+
+
+## COMMUNITY 36
+
+Members: 204  
+Tweets: 350  
+Retweets: 212  
+Retweeted by other communities: 54  
+Replies to other communities: 3  
+Replies from other communities: 5  
+Top 10 influence ranks: 93, 134, 460, 840, 1431, 1487, 1693, 1713, 1983, 2240  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 50.472%  
+mikebrown : 44.811%  
+botl : 43.396%  
+ceceisfree : 29.717%  
+ezellford : 09.434%  
+renishamcbride : 05.189%  
+jonathanferrell : 05.189%  
+chaviscarter : 05.189%  
+freecece : 03.302%  
+nmos14 : 03.302%  
+
+### Top Retweets (by percentage inclusion in retweets)
+43.396% : #BOTL activism: Campaigns for #MikeBrown &amp; #Ferguson via @LeBreed7910 --&gt;
+http://t.co/zXurX4PU0R #BlackLivesMatter http://t.co/t4XoOSTRiC  
+09.434% : Another unarmed black male shot by police- #EzellFord. This is a crisis. #BlackLivesMatter http://t.co/s15l8bNAMU  
+06.132% : Black &amp; Unarmed: 20 Black Men Killed By Law Enforcement via @TheRoot
+http://t.co/6YKgr5bnNJ #BlackLivesMatter  
+05.189% : Remember #RenishaMcBride.
+Remember #JonathanFerrell.
+Remember #ChavisCarter.
+Remember #BlackLivesMatter.  
+03.774% : Michael Dunn found guilty of murder in killing of unarmed Florida teen, Jordan Davis
+http://t.co/j3jgoKRVCc #BlackLivesMatter  
+03.302% : This --&gt; MT @PlMPCESS: Last words of black men murdered by policemen. http://t.co/ilFF03EFvv // #BlackLivesMatter #ferguson  
+02.830% : WATCH: Powerful trailer of @Free_CeCe Doc with @Lavernecox
+https://t.co/MawSJYkx47 TW: talk of violence #TransLivesMatter  #BlackLivesMatter  
+01.887% : #CeceIsFree #CeceIsFree #CeceIsFree #CeceIsFree #CeceIsFree #CeceIsFree #CeceIsFree #CeceIsFree #CeceIsFree #FreeCeCe #BlackLivesMatter  
+01.887% : .@GovJayNixon, stand up &amp; fight for your citizens! Appoint a special prosecutor for #MichaelBrown’s case! #BlackLivesMatter!
+#Ferguson  
+01.887% : @profblmkelley @HistoricalTWiB Thank you for introducing me to Ida B. Wells. #Ferguson #NMOS14 #BlackLivesMatter http://t.co/lBtbwHjuLi  
+
+
+## COMMUNITY 37
+
+Members: 199  
+Tweets: 729  
+Retweets: 420  
+Retweeted by other communities: 18  
+Replies to other communities: 2  
+Replies from other communities: 0  
+Top 10 influence ranks: 185, 272, 379, 504, 588, 805, 810, 852, 895, 984  
+
+### Top Hashtags (by percentage inclusion in retweets)
+imatter : 58.333%  
+naacpyc : 11.429%  
+naacp : 06.905%  
+ferguson : 04.762%  
+mikebrown : 02.857%  
+mlk : 02.143%  
+dontshoot : 02.143%  
+blacklifematters : 01.667%  
+unt : 01.667%  
+bringbackourgirls : 01.667%  
+
+### Top Retweets (by percentage inclusion in retweets)
+03.571% : We are the change we seek. #iMatter #BlackLivesMatter  
+02.381% : “@MSNAACP_YC:#BlackLivesMatter  #iMatter  #NAACPYC  @NAACP @MSNAACP @SammieDow @touchthaskye http://t.co/aGfPCLK9QS” This is DOPE!  
+02.143% : Don't forget to vote, and hold your representatives accountable! #IMatter #BlackLivesMatter  
+02.143% : I have a dream that one day every valley shall be exalted, &amp; every hill &amp; mountain shall be made low.#MLK #NAACP #BlackLivesMatter #iMatter  
+01.905% : Join in the twitter town hall right now! Use the hashtags #BlackLivesMatter #IMatter  
+01.905% : Hands up is a sign of surrender not attack. #IMatter #BlackLivesMatter  
+01.905% : We have a purpose and we have dreams just like everyone else #BlackLivesMatter BlackLives  
+01.905% : Momma told me I had 2 strikes coming into this world because I'm black and a male...I got my 3rd when I became educated. #BlackLivesMatter  
+01.905% : Sad that I have to feel unprotected in the land of the free and the home of the brave  #imatter #BlackLivesMatter  
+01.667% : We have the power to create change, let your voice be heard! Use the hashtags #IMATTER #BlackLivesMatter  
+
+
+## COMMUNITY 38
+
+Members: 197  
+Tweets: 387  
+Retweets: 207  
+Retweeted by other communities: 55  
+Replies to other communities: 2  
+Replies from other communities: 6  
+Top 10 influence ranks: 276, 283, 495, 576, 665, 1042, 1086, 1265, 1412, 1609  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 28.502%  
+dangerousblackkids : 26.570%  
+yeswecode : 26.570%  
+aurarosser : 07.729%  
+staywoke : 06.280%  
+whywecantwait : 04.348%  
+alllivesmatter : 03.382%  
+fergusonoctober : 02.899%  
+mikebrown : 02.415%  
+fergusonsyllabus : 02.415%  
+
+### Top Retweets (by percentage inclusion in retweets)
+26.570% : #DangerousBlackKids #BlackLivesMatter These are #YesWeCode youth. "Stop shooting kids down. Start lifting kids up." http://t.co/bHrtkEhdVt  
+11.111% : 300 sociologists. #ferguson also, support #blacklivesmatter with donations &amp; attention. Thank you all. https://t.co/JyU3SK0Gl4  
+06.280% : This is an epidemic people don't be fooled. #staywoke #Ferguson #blacklivesmatter http://t.co/BRYNcVvNMM  
+04.348% : This is #blacklivesmatter http://t.co/mfPoROD4P7  
+04.348% : Police Kill Mich. Woman After Responding To Domestic Violence Call |  http://t.co/aznpUXJ6Q7 #AuraRosser #WhyWeCantWait #BlackLivesMatter  
+03.382% : Inspired by people marching for justice from NYC to Ferguson to Tel Aviv to Ramallah. #BlackLivesMatter &amp; #AllLivesMatter #WeWillNotGoBack  
+02.899% : #FergusonOctober because #BlackLivesMatter and we are sick and tired of being sick and tired. freedom. equality. justice.  
+02.899% : hi @prisonculture—can you help get the word out about yet another killing by police? http://t.co/sebZTvFn3R #AuraRosser #BlackLivesMatter  
+02.899% : Honored to join @ThisIsFusion's @AliciaMenendez to discuss police brutality against Black women. #BlackLivesMatter http://t.co/bd9JyJ1sqn  
+02.415% : #BlackLivesMatter  @NYULYP  http://t.co/mlOGVIuLBg  
+
+
+## COMMUNITY 39
+
+Members: 190  
+Tweets: 334  
+Retweets: 199  
+Retweeted by other communities: 45  
+Replies to other communities: 4  
+Replies from other communities: 6  
+Top 10 influence ranks: 170, 232, 550, 593, 1351, 1399, 1407, 1490, 1890, 2124  
+
+### Top Hashtags (by percentage inclusion in retweets)
+ferguson : 20.101%  
+wecareaboutferguson : 13.065%  
+mikebrown : 08.543%  
+mikebrownnola : 07.035%  
+handsupdontshoot : 03.015%  
+damn : 03.015%  
+facingrace14 : 03.015%  
+johncrawford : 01.508%  
+indict : 01.508%  
+shawshooting : 01.005%  
+
+### Top Retweets (by percentage inclusion in retweets)
+25.628% : Why does it take 2 journalists to legitimize struggle against racial violence and 4 racial justice #BlackLivesMatter http://t.co/49Tdlu7uaH  
+13.065% : Shot 16x and armed only with a sandwich? Is this real life? #BlackLivesMatter #Ferguson  
+13.065% : #WeCareAboutFerguson because #BlackLivesMatter. Full stop.  
+07.035% : Wow. NOLA protests in support of #MikeBrown #mikeBrownNOLA #blacklivesmatter http://t.co/ii9ioJc6E6  
+05.025% : #BlackLivesMatter  
+04.523% : We want to engage our 2.7 mil members to help stop the killing of unarmed black youth in USA. Pls send ideas, ASAP. #BlackLivesMatter  
+04.020% : Sagging pants is not probable cause. #BlackLivesMatter  
+03.015% : Fresh Prince of STILL RELEVANT http://t.co/AF0HjBArRM #HandsUpDontShoot #Ferguson #BlackLivesMatter #DAMN  
+03.015% : 73% of tipped restaurant workers, lowest wage earners, are women of color #FacingRace14 #BlackLivesMatter @rocunited @SaruJayaraman @AFLCIO  
+02.513% : #BlackLivesMatter http://t.co/erVsKW9cRS  
 
