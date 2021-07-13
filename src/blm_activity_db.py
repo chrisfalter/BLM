@@ -267,7 +267,7 @@ class BlmActivityDb():
                 cur.execute(account_insert, (user_id,))
 
     def _save_communities(self, community_activity_map, period_no):
-        community_insert = "INSERT into Community(PeriodId, CommunityId, NumTweets) values (?, ?, ?)"
+        community_insert = "INSERT or IGNORE into Community(PeriodId, CommunityId, NumTweets) values (?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
             for community_id, community_activity in community_activity_map.items():
@@ -275,7 +275,7 @@ class BlmActivityDb():
                 cur.execute(community_insert, (period_no, community_id, num_tweets))
 
     def _save_user_activity(self, user_activity_map: Dict[str, UserActivity], user_community_map, period_no):
-        insert = "INSERT into AccountActivity Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
+        insert = "INSERT or IGNORE into AccountActivity Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
             for user_id, user_activity in user_activity_map.items():
@@ -309,8 +309,8 @@ class BlmActivityDb():
                 cur.execute(insert, params)
 
     def _save_community_activity(self, comm_activity_map: Dict[int, CommunityActivity], period_no):
-        meme_insert = "INSERT into CommunityMeme Values(?, ?, ?, ?)"
-        retweet_insert = "INSERT into CommunityRetweet Values(?, ?, ?, ?)"
+        meme_insert = "INSERT or IGNORE into CommunityMeme Values(?, ?, ?, ?)"
+        retweet_insert = "INSERT or IGNORE into CommunityRetweet Values(?, ?, ?, ?)"
         community_update = \
             "UPDATE Community " \
             "SET Stance = ?, " \
@@ -328,7 +328,7 @@ class BlmActivityDb():
                 "SecondUsage = ?, " \
                 "ThirdUsage = ? " \
             "WHERE PeriodId = ? and CommunityId = ?"
-        retweet_sentiment_insert = "INSERT into CommunityRetweetSentiment " \
+        retweet_sentiment_insert = "INSERT or IGNORE into CommunityRetweetSentiment " \
                                    "Values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
@@ -380,8 +380,8 @@ class BlmActivityDb():
                 cur.execute(retweet_sentiment_insert, params)
 
     def _save_inter_community_activity(self, ic_retweets, ic_replies, period_no):
-        retweet_insert = "INSERT into InterCommunityRetweet Values(?, ?, ?, ?, ?, ?)"
-        reply_insert = "INSERT into InterCommunityReply Values(?, ?, ?, ?, ?, ?)"
+        retweet_insert = "INSERT or IGNORE into InterCommunityRetweet Values(?, ?, ?, ?, ?, ?)"
+        reply_insert = "INSERT or IGNORE into InterCommunityReply Values(?, ?, ?, ?, ?, ?)"
         with self.conn:
             cur = self.conn.cursor()
             for (ar, cr), count in ic_retweets.items():
