@@ -1,4 +1,5 @@
 from collections import defaultdict
+from typing import Counter
 from nltk import download, pos_tag
 from nltk.tokenize import wordpunct_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -12,6 +13,8 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.model_selection import GridSearchCV
 from sklearn import metrics
 import random
+
+from tweet_mgr import Stance
 
 download('wordnet')
 download('averaged_perceptron_tagger')
@@ -139,5 +142,35 @@ def get_blm_classifier(blm_tweets, counter_tweets):
     gs = GridSearchCV(text_pipeline, param_grid, cv = 5)
     X = blm_tweets + counter_tweets
     Y = [True] * len(blm_tweets) + [False] * len(counter_tweets)
+    gs.fit(X, Y)
+    return gs, gs.cv_results_
+
+
+def get_three_class_classifier(blm_tweets, counter_tweets, excluded_tweets):
+    """Uses the Stance enum, where excluded use the Stance.Unknown label. The excluded class
+    is defined as using the BLM memes while pursuing some other debate --
+    for example, Bureau of Land Management policy, or pornography. """
+    text_pipeline = Pipeline([('lower', LowerCaser()),
+                            ('tokenize', Tokenizer()),
+                            ('lemmatize', Lemmatizer()),
+                            ('punc', PunctuationRemover()),
+                            ('stringize', Stringizer()),
+                            ('vec', TfidfVectorizer()),
+                            ('model', MultinomialNB())])
+    en_stops = stopwords.words("english")
+    param_grid = {
+        "model__alpha": [1.0],
+        "model__fit_prior": [False], # always use a uniform prior
+        "vec__stop_words": [
+            ["rt", "#blacklivesmatter", "blacklivesmatter"], 
+            ["rt", "blacklivesmatter", "#blacklivesmatter"] + en_stops, 
+            en_stops,
+        ]
+    }
+    gs = GridSearchCV(text_pipeline, param_grid, cv = 5)
+    X = blm_tweets + excluded_tweets + counter_tweets
+    Y = [Stance.Protest] * len(blm_tweets) + \
+        [Stance.Unknown] * len(excluded_tweets) + \
+        [Stance.CounterProtest] * len(counter_tweets)
     gs.fit(X, Y)
     return gs, gs.cv_results_
