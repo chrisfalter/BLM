@@ -23,7 +23,7 @@ if tweet_ids[-1] <= 597189127243575296: #last successful ID before connection er
 ```
 The value of the tweet ID in the script was updated each time an interruption occurred.
 
-* Year 2020 - The Observatory on Social Media (OSOME) at Indiana University maintains a store of tweets from the Twitter Decahose API. OSOME was searched for tweets having one or both of the hashtags `#BlackLivesMatter` and `#BLM` during the relevant period. Zip files containing search results were downloaded to disk, then the results were loaded to the `tweets2` Elasticsearch index using the `data/process_osome_gz_dir.py` script. The IDs of the tweets are available in the file `data/tweets2_tweet_ids.txt`.
+* Year 2020 - The Observatory on Social Media (OSOME) at Indiana University maintains a store of tweets from the Twitter Decahose API. OSOME was searched for tweets having one or both of the hashtags `#BlackLivesMatter` and `#BLM` during the relevant period. Zip files containing search results were downloaded to disk, then the results were loaded to the `tweets2` Elasticsearch index using the `data/process_osome_gz_dir.py` script. The IDs of the tweets are available in the file `data/tweets2_tweet_ids_part1.txt` and `data/tweets2_tweet_ids_part2.txt`.
 
 
 ## Analyzing Twitter Data
