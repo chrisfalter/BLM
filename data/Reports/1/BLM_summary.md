@@ -70,7 +70,7 @@ Tweets: 79762
 
 ### Sentiment
 
-All Tweet Polarity =   
+All Tweet Polarity = -0.001  
 Retweet Polarity = -0.007
 
 ### Emotions
